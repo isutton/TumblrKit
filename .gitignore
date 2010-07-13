@@ -1,0 +1,16 @@
+# XCode noise
+build/
+*.mode1v3
+*.pbxuser
+*.perspectivev3
+
+# OSX noise
+.DS_Store
+profile
+
+# Doxygen
+html/
+latex/
+
+# shared objects
+*.dylib
