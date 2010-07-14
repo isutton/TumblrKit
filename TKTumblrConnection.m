@@ -26,14 +26,35 @@
 
 - (BOOL)sendSynchronousRequest:(TKTumblrRequest *)req returningResponse:(TKTumblrResponse **)res error:(NSError **)error
 {
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:[req myURL]];
+
+    //
+    // If req.post is not nil, then we're adding/editing some post, otherwise
+    // we'll be consulting the read api using the parameters specified in the
+    // request.
+    //
+
+    if ([req isWrite])
+        return [self sendSynchronousWriteRequest:req returningResponse:res error:error];
+
+    return [self sendSynchronousReadRequest:req returningResponse:res error:error];
+}
+
+- (BOOL)sendSynchronousReadRequest:(TKTumblrRequest *)req returningResponse:(TKTumblrResponse **)res error:(NSError **)error
+{
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:[req URLForRead]];
     TKTumblrReader *reader = [[TKTumblrReader alloc] init];
     [parser setDelegate:reader];
     [parser parse];
     if (res) {
         *res = [TKTumblrResponse responseWithPosts:reader.posts];
     }
+
     return YES;
+}
+
+- (BOOL)sendSynchronousWriteRequest:(TKTumblrRequest *)req returningResponse:(TKTumblrResponse **)res error:(NSError **)error
+{
+    return NO;
 }
 
 @end
