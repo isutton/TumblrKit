@@ -20,13 +20,13 @@
 
 #import "TKPost.h"
 
-static struct
+typedef struct
 {
     NSString *name;
     NSString *className;
-}
+} TKPostTypeToClassNameMapping;
 
-TKPostTypeStringToClassName[] =
+static TKPostTypeToClassNameMapping TKPostTypeStringToClassName[] =
 {
     { @"photo", @"TKPostPhoto" },
     { @"conversation", @"TKPostConversation" },

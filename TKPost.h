@@ -20,7 +20,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-typedef enum {
+typedef enum
+{
     TKPostTypeAll,
     TKPostTypeRegular,
     TKPostTypeLink,
@@ -32,18 +33,21 @@ typedef enum {
     TKPostTypeAnswer
 } TKPostType;
 
-typedef enum {
+typedef enum
+{
     TKPostFormatHTML,
     TKPostFormatMarkdown
 } TKPostFormat;
 
-typedef enum {
+typedef enum
+{
     TKPostFilterHTML,
     TKPostFilterText,
     TKPostFilterNone
 } TKPostFilter;
 
-@interface TKPost : NSObject {
+@interface TKPost : NSObject
+{
     NSNumber *postId;
     NSString *url;
     NSString *slug;
