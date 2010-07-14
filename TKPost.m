@@ -113,7 +113,7 @@ static NSString *TKPostFormatAsString[] =
 
 + (id)postWithAttributes:(NSDictionary *)attributeDict
 {
-    Class postClass;
+    Class postClass = nil;
     NSString *type_ = [attributeDict objectForKey:@"type"];
 
     for (int i = 0; TKPostTypeStringToClassName[i].name != nil; i++) {
