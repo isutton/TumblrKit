@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "TKTumblr.h"
 #import "TKTumblrConnection.h"
 #import "TKTumblrRequest.h"
 #import "TKTumblrResponse.h"
@@ -15,7 +16,7 @@
 int main(int argc, char **argv) {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-    TKTumblrRequest *req = [[TKTumblrRequest alloc] initWithURL:[NSURL URLWithString:@"http://igorsutton.com/api/read"]];
+    TKTumblrRequest *req = [[TKTumblrRequest alloc] initWithURL:[NSURL URLWithString:@"http://igorsutton.com"]];
     req.postFilter = TKPostFilterText;
     req.startIndex = 2;
     req.numberOfPosts = 1;
@@ -28,7 +29,8 @@ int main(int argc, char **argv) {
 
     [conn sendSynchronousRequest:req returningResponse:&res error:&error];
 
-    NSLog(@"%@", res.posts);    
-    
+    Log(@"%@", res.posts);
+    Log(@"%@", [req URLForWrite]);
+
     [pool drain];
 }
