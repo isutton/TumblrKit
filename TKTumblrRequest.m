@@ -59,7 +59,7 @@ static NSString *TKPostFilterAsQueryString[] = {
         self.postType = TKPostTypeAll;
         self.post = nil;
     }
-    
+
     return self;
 }
 
@@ -93,9 +93,9 @@ static NSString *TKPostFilterAsQueryString[] = {
             [URLString appendFormat:@"type=%@&", TKPostTypeAsQueryString[postType]];
         }
     }
-    
+
     [URLString appendFormat:@"filter=%@", TKPostFilterAsQueryString[postFilter]];
-    
+
     return [[[NSURL alloc] initWithString:URLString] autorelease];
 }
 

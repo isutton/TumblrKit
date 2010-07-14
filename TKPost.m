@@ -53,7 +53,7 @@ static NSString *TKPostFormatAsString[] = {
 
 @synthesize postId, url, slug, date, reblogKey, type, format;
 
-- (id)init 
+- (id)init
 {
     if ((self = [super init]) != nil) {
         self.postId = nil;
@@ -64,7 +64,7 @@ static NSString *TKPostFormatAsString[] = {
         self.url = nil;
         self.format = TKPostFormatHTML;
     }
-    
+
     return self;
 }
 
@@ -76,7 +76,7 @@ static NSString *TKPostFormatAsString[] = {
         self.date = [attributeDict objectForKey:@"date"];
         self.slug = [attributeDict objectForKey:@"slug"];
         self.reblogKey = [attributeDict objectForKey:@"reblog-key"];
-        
+
         NSString *format_ = [attributeDict objectForKey:@"format"];
 
         if ([format_ isEqualToString:@"html"])
@@ -85,7 +85,7 @@ static NSString *TKPostFormatAsString[] = {
             self.format = TKPostFormatMarkdown;
 
     }
-    
+
     return self;
 }
 
@@ -134,7 +134,7 @@ static NSString *TKPostFormatAsString[] = {
         self.title = @"";
         self.body = @"";
     }
-    
+
     return self;
 }
 
@@ -199,7 +199,7 @@ static NSString *TKPostFormatAsString[] = {
         type = TKPostTypeLink;
         text = [[NSMutableString alloc] init];
     }
-    
+
     return self;
 }
 
@@ -219,7 +219,7 @@ static NSString *TKPostFormatAsString[] = {
 {
     if (aText != text) {
         [text release];
-        text = [aText mutableCopy];        
+        text = [aText mutableCopy];
     }
 }
 
@@ -250,7 +250,7 @@ static NSString *TKPostFormatAsString[] = {
         source = [[NSMutableString alloc] init];
         text = [[NSMutableString alloc] init];
     }
-    
+
     return self;
 }
 
@@ -311,7 +311,7 @@ static NSString *TKPostFormatAsString[] = {
         type = TKPostTypeConversation;
         text = [[NSMutableString alloc] init];
     }
-    
+
     return self;
 }
 
@@ -358,7 +358,7 @@ static NSString *TKPostFormatAsString[] = {
         width = 0;
         height = 0;
     }
-    
+
     return self;
 }
 
@@ -368,7 +368,7 @@ static NSString *TKPostFormatAsString[] = {
         width = [[attributeDict objectForKey:@"width"] intValue];
         height = [[attributeDict objectForKey:@"height"] intValue];
     }
-    
+
     return self;
 }
 

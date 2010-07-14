@@ -30,7 +30,7 @@
     if ((self = [super init]) != nil) {
         posts = [[NSMutableArray alloc] init];
     }
-    
+
     return self;
 }
 
@@ -50,7 +50,7 @@
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     self.currentElementName = elementName;
-    
+
     if ([elementName isEqualToString:@"post"]) {
         self.currentPost = [TKPost postWithAttributes:attributeDict];
     }
