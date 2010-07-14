@@ -138,3 +138,22 @@ typedef enum {
 - (void)appendToText:(NSString *)string;
 
 @end
+
+@interface TKPostVideo : TKPost
+{
+    NSMutableString *caption;
+    NSMutableString *source;
+    NSMutableString *player;
+}
+
+- (NSString *)caption;
+- (void)setCaption:(NSString *)aCaption;
+- (NSString *)source;
+- (void)setSource:(NSString *)aSource;
+- (NSString *)player;
+- (void)setPlayer:(NSString *)aPlayer;
+- (void)appendToCaption:(NSString *)string;
+- (void)appendToSource:(NSString *)string;
+- (void)appendToPlayer:(NSString *)string;
+
+@end

@@ -33,6 +33,7 @@ TKPostTypeStringToClassName[] =
     { @"link", @"TKPostLink" },
     { @"quote", @"TKPostQuote" },
     { @"regular", @"TKPostRegular" },
+    { @"video", @"TKPostVideo" },
     { nil, nil }
 };
 
@@ -405,6 +406,89 @@ static NSString *TKPostFormatAsString[] =
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@, Photo Caption: %@, Photo Width: %i, Photo Height: %i", [super description], self.caption, self.width, self.height];
+}
+
+@end
+
+@implementation TKPostVideo
+
+- (id)init
+{
+    if ((self = [super init]) != nil) {
+        type = TKPostTypeVideo;
+        caption = [[NSMutableString alloc] init];
+        source = [[NSMutableString alloc] init];
+        player = [[NSMutableString alloc] init];
+    }
+
+    return self;
+}
+
+- (void)dealloc
+{
+    [caption release];
+    [source release];
+    [player release];
+    [super dealloc];
+}
+
+- (NSString *)caption
+{
+    return [caption copy];
+}
+
+- (void)setCaption:(NSString *)aCaption
+{
+    if (aCaption != caption) {
+        [caption release];
+        caption = [aCaption mutableCopy];
+    }
+}
+
+- (NSString *)source
+{
+    return [source copy];
+}
+
+- (void)setSource:(NSString *)aSource
+{
+    if (aSource != source) {
+        [source release];
+        source = [aSource mutableCopy];
+    }
+}
+
+- (NSString *)player
+{
+    return [player copy];
+}
+
+- (void)setPlayer:(NSString *)aPlayer
+{
+    if (aPlayer != player) {
+        [player release];
+        player = [aPlayer mutableCopy];
+    }
+}
+
+- (void)appendToCaption:(NSString *)string
+{
+    [caption appendString:string];
+}
+
+- (void)appendToSource:(NSString *)string
+{
+    [source appendString:string];
+}
+
+- (void)appendToPlayer:(NSString *)string
+{
+    [player appendString:string];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@, Video Caption: %@, Video Source: %@, Video Player: %@", [super description], self.caption, self.source, self.player];
 }
 
 @end
