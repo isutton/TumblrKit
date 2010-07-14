@@ -70,6 +70,15 @@
     if ([currentElementName isEqualToString:@"photo-caption"]) {
         [currentPost appendToCaption:string];
     }
+    else if ([currentElementName isEqualToString:@"video-player"]) {
+        [currentPost appendToPlayer:string];
+    }
+    else if ([currentElementName isEqualToString:@"video-source"]) {
+        [currentPost appendToSource:string];
+    }
+    else if ([currentElementName isEqualToString:@"video-caption"]) {
+        [currentPost appendToCaption:string];
+    }
     else if ([currentElementName isEqualToString:@"conversation-text"]) {
         [currentPost appendToText:string];
     }
