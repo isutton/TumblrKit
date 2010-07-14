@@ -20,10 +20,14 @@
 
 #import "TKPost.h"
 
-static struct {
+static struct
+{
     NSString *name;
     NSString *className;
-} TKPostTypeStringToClassName[] = {
+}
+
+TKPostTypeStringToClassName[] =
+{
     { @"photo", @"TKPostPhoto" },
     { @"conversation", @"TKPostConversation" },
     { @"link", @"TKPostLink" },
@@ -32,7 +36,8 @@ static struct {
     { nil, nil }
 };
 
-static NSString *TKPostTypeAsString[] = {
+static NSString *TKPostTypeAsString[] =
+{
     @"",
     @"TKPostTypeRegular",
     @"TKPostTypeLink",
@@ -44,7 +49,8 @@ static NSString *TKPostTypeAsString[] = {
     @"TKPostTypeAnswer"
 };
 
-static NSString *TKPostFormatAsString[] = {
+static NSString *TKPostFormatAsString[] =
+{
     @"TKPostFormatHTML",
     @"TKPostFormatMarkdown"
 };

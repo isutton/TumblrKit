@@ -20,8 +20,8 @@
 
 #import "TKTumblrRequest.h"
 
-
-static NSString *TKPostTypeAsQueryString[] = {
+static NSString *TKPostTypeAsQueryString[] =
+{
     @"all",
     @"text",
     @"link",
@@ -33,7 +33,8 @@ static NSString *TKPostTypeAsQueryString[] = {
     @"answer"
 };
 
-static NSString *TKPostFilterAsQueryString[] = {
+static NSString *TKPostFilterAsQueryString[] =
+{
     @"html",
     @"text",
     @"none"
