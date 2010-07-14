@@ -23,24 +23,28 @@
 
 @interface TKTumblrRequest : NSObject
 {
-    NSURL        *URL;
-    NSUInteger   startIndex;
-    NSUInteger   numberOfPosts;
-    NSUInteger   postId;
+    NSURL *URL;
+    NSUInteger startIndex;
+    NSUInteger numberOfPosts;
+    NSUInteger postId;
     TKPostFilter postFilter;
-    TKPostType   postType;
+    TKPostType postType;
+    TKPost *post;
 }
 
-@property (copy)   NSURL        *URL;
-@property (assign) NSUInteger   startIndex;
-@property (assign) NSUInteger   numberOfPosts;
-@property (assign) NSUInteger   postId;
+@property (copy)   NSURL *URL;
+@property (assign) NSUInteger startIndex;
+@property (assign) NSUInteger numberOfPosts;
+@property (assign) NSUInteger postId;
 @property (assign) TKPostFilter postFilter;
-@property (assign) TKPostType   postType;
+@property (assign) TKPostType postType;
+@property (assign) TKPost *post;
 
 + (id)requestWithURL:(NSURL *)theURL;
 
 - (id)initWithURL:(NSURL *)theURL;
-- (NSURL *)myURL;
+- (BOOL)isWrite;
+- (NSURL *)URLForRead;
+- (NSURL *)URLForWrite;
 
 @end

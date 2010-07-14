@@ -41,7 +41,7 @@ static NSString *TKPostFilterAsQueryString[] = {
 
 @implementation TKTumblrRequest
 
-@synthesize URL, startIndex, numberOfPosts, postId, postFilter, postType;
+@synthesize URL, startIndex, numberOfPosts, postId, postFilter, postType, post;
 
 + (id)requestWithURL:(NSURL *)theURL
 {
@@ -57,6 +57,7 @@ static NSString *TKPostFilterAsQueryString[] = {
         self.postId = 0;
         self.postFilter = TKPostFilterNone;
         self.postType = TKPostTypeAll;
+        self.post = nil;
     }
     
     return self;
@@ -68,10 +69,12 @@ static NSString *TKPostFilterAsQueryString[] = {
     [super dealloc];
 }
 
-- (NSURL *)myURL
+- (NSURL *)URLForRead
 {
     NSMutableString *URLString = [[URL description] mutableCopy];
-    
+
+    [URLString appendString:@"/api/read"];
+
     //
     // We can have either postId or combination of startIndex, numberOfPosts and
     // postType. If postId has precedence if present.
@@ -94,6 +97,16 @@ static NSString *TKPostFilterAsQueryString[] = {
     [URLString appendFormat:@"filter=%@", TKPostFilterAsQueryString[postFilter]];
     
     return [[[NSURL alloc] initWithString:URLString] autorelease];
+}
+
+- (NSURL *)URLForWrite
+{
+    return [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@/api/write", [URL description]]];
+}
+
+- (BOOL)isWrite
+{
+    return self.post != nil;
 }
 
 @end
