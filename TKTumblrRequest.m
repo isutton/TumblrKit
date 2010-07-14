@@ -42,7 +42,7 @@ static NSString *TKPostFilterAsQueryString[] =
 
 @implementation TKTumblrRequest
 
-@synthesize URL, startIndex, numberOfPosts, postId, postFilter, postType, post;
+@synthesize URL, email, password, startIndex, numberOfPosts, postId, postFilter, postType, post, tag;
 
 + (id)requestWithURL:(NSURL *)theURL
 {
@@ -59,6 +59,7 @@ static NSString *TKPostFilterAsQueryString[] =
         self.postFilter = TKPostFilterNone;
         self.postType = TKPostTypeAll;
         self.post = nil;
+        self.tag = nil;
     }
 
     return self;
@@ -67,6 +68,8 @@ static NSString *TKPostFilterAsQueryString[] =
 - (void)dealloc
 {
     [URL release];
+    [post release];
+    [tag release];
     [super dealloc];
 }
 
@@ -81,10 +84,10 @@ static NSString *TKPostFilterAsQueryString[] =
     // postType. If postId has precedence if present.
     //
     if (postId > 0) {
-        [URLString appendFormat:@"?id=%i&", self.postId];
+        [URLString appendFormat:@"?id=%i&", postId];
     }
     else {
-        [URLString appendFormat:@"?start=%i&num=%i&", self.startIndex, self.numberOfPosts];
+        [URLString appendFormat:@"?start=%i&num=%i&", startIndex, numberOfPosts];
 
         //
         // Currently Tumblr doesn't support "answer" for the type filter, so
@@ -92,6 +95,10 @@ static NSString *TKPostFilterAsQueryString[] =
         //
         if (postType != TKPostTypeAll && postType != TKPostTypeAnswer) {
             [URLString appendFormat:@"type=%@&", TKPostTypeAsQueryString[postType]];
+        }
+
+        if (tag) {
+            [URLString appendFormat:@"tagged=%@&", tag];
         }
     }
 
@@ -102,7 +109,7 @@ static NSString *TKPostFilterAsQueryString[] =
 
 - (NSURL *)URLForWrite
 {
-    return [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@/api/write", [URL description]]];
+    return [[[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@/api/write", [URL description]]] autorelease];
 }
 
 - (BOOL)isWrite
