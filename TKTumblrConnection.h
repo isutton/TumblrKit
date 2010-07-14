@@ -29,7 +29,7 @@
 }
 
 - (BOOL)sendSynchronousRequest:(TKTumblrRequest *)req returningResponse:(TKTumblrResponse **)res error:(NSError **)error;
-- (BOOL)sendSynchronousWriteRequest:(TKTumblrRequest *)req returningResponse:(TKTumblrResponse **)res error:(NSError **)error;
-- (BOOL)sendSynchronousReadRequest:(TKTumblrRequest *)req returningResponse:(TKTumblrResponse **)res error:(NSError **)error;
+- (BOOL)sendSynchronousWriteRequest:(TKTumblrRequest *)aRequest returningResponse:(TKTumblrResponse **)aResponse error:(NSError **)error;
+- (BOOL)sendSynchronousReadRequest:(TKTumblrRequest *)aRequest returningResponse:(TKTumblrResponse **)aResponse error:(NSError **)error;
 
 @end

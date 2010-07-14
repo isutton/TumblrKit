@@ -39,20 +39,20 @@
     return [self sendSynchronousReadRequest:req returningResponse:res error:error];
 }
 
-- (BOOL)sendSynchronousReadRequest:(TKTumblrRequest *)req returningResponse:(TKTumblrResponse **)res error:(NSError **)error
+- (BOOL)sendSynchronousReadRequest:(TKTumblrRequest *)aRequest returningResponse:(TKTumblrResponse **)aResponse error:(NSError **)error
 {
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:[req URLForRead]];
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:[aRequest URLForRead]];
     TKTumblrReader *reader = [[TKTumblrReader alloc] init];
     [parser setDelegate:reader];
     [parser parse];
-    if (res) {
-        *res = [TKTumblrResponse responseWithPosts:reader.posts];
+    if (aResponse) {
+        *aResponse = [TKTumblrResponse responseWithPosts:reader.posts];
     }
 
     return YES;
 }
 
-- (BOOL)sendSynchronousWriteRequest:(TKTumblrRequest *)req returningResponse:(TKTumblrResponse **)res error:(NSError **)error
+- (BOOL)sendSynchronousWriteRequest:(TKTumblrRequest *)aRequest returningResponse:(TKTumblrResponse **)aResponse error:(NSError **)error
 {
     return NO;
 }
