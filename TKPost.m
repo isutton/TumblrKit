@@ -349,7 +349,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"Conversation Text: %@", self.text];
+    return [NSString stringWithFormat:@"%@, Conversation Text: %@", [super description], self.text];
 }
 
 @end
