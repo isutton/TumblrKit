@@ -20,6 +20,17 @@
 
 #import "TKPost.h"
 
+static struct {
+    NSString *name;
+    NSString *className;
+} TKPostTypeStringToClassName[] = {
+    { @"photo", @"TKPostPhoto" },
+    { @"conversation", @"TKPostConversation" },
+    { @"link", @"TKPostLink" },
+    { @"quote", @"TKPostQuote" },
+    { @"regular", @"TKPostRegular" },
+    { nil, nil }
+};
 
 static NSString *TKPostTypeAsString[] = {
     @"",
@@ -96,33 +107,21 @@ static NSString *TKPostFormatAsString[] = {
 + (id)postWithAttributes:(NSDictionary *)attributeDict
 {
     Class postClass;
+    NSString *type_ = [attributeDict objectForKey:@"type"];
 
-    //
-    // This is actually a bit more verbose I wished, but I plan to use NSDictionary
-    // in the future for this mapping.
-    //
-    
-    if ([[attributeDict objectForKey:@"type"] isEqualToString:@"photo"]) {
-        postClass = [TKPostPhoto class];
+    for (int i = 0; TKPostTypeStringToClassName[i].name != nil; i++) {
+        if ([TKPostTypeStringToClassName[i].name isEqualToString:type_]) {
+            postClass = NSClassFromString(TKPostTypeStringToClassName[i].className);
+            break;
+        }
     }
-    else if ([[attributeDict objectForKey:@"type"] isEqualToString:@"conversation"]) {
-        postClass = [TKPostConversation class];
-    }
-    else if ([[attributeDict objectForKey:@"type"] isEqualToString:@"link"]) {
-        postClass = [TKPostLink class];
-    }
-    else if ([[attributeDict objectForKey:@"type"] isEqualToString:@"regular"]) {
-        postClass = [TKPostRegular class];
-    }
-    else if ([[attributeDict objectForKey:@"type"] isEqualToString:@"quote"]) {
-        postClass = [TKPostQuote class];
-    }
-    else {
-        postClass = [TKPost class];
-    }    
 
-    TKPost *post = [(TKPost *)[postClass alloc] initWithAttributes:attributeDict];
-    return post;
+    if (postClass) {
+        TKPost *post = [(TKPost *)[postClass alloc] initWithAttributes:attributeDict];
+        return post;
+    }
+
+    return nil;
 }
 
 @end
