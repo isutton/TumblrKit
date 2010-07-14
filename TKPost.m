@@ -34,6 +34,7 @@ static TKPostTypeToClassNameMapping TKPostTypeStringToClassName[] =
     { @"quote", @"TKPostQuote" },
     { @"regular", @"TKPostRegular" },
     { @"video", @"TKPostVideo" },
+    { @"audio", @"TKPostAudio" },
     { nil, nil }
 };
 
@@ -489,6 +490,69 @@ static NSString *TKPostFormatAsString[] =
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@, Video Caption: %@, Video Source: %@, Video Player: %@", [super description], self.caption, self.source, self.player];
+}
+
+@end
+
+@implementation TKPostAudio
+
+- (id)init
+{
+    if ((self = [super init]) != nil) {
+        type = TKPostTypeAudio;
+        caption = [[NSMutableString alloc] init];
+        player = [[NSMutableString alloc] init];
+    }
+
+    return self;
+}
+
+- (void)dealloc
+{
+    [caption release];
+    [player release];
+    [super dealloc];
+}
+
+- (NSString *)caption
+{
+    return [caption copy];
+}
+
+- (void)setCaption:(NSString *)aCaption
+{
+    if (aCaption != caption) {
+        [caption release];
+        caption = [aCaption mutableCopy];
+    }
+}
+
+- (NSString *)player
+{
+    return [player copy];
+}
+
+- (void)setPlayer:(NSString *)aPlayer
+{
+    if (aPlayer != player) {
+        [player release];
+        player = [aPlayer mutableCopy];
+    }
+}
+
+- (void)appendToCaption:(NSString *)string
+{
+    [caption appendString:string];
+}
+
+- (void)appendToPlayer:(NSString *)string
+{
+    [player appendString:string];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@, Audio Caption: %@, Audio Player: %@", [super description], self.caption, self.player];
 }
 
 @end

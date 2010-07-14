@@ -70,6 +70,12 @@
     if ([currentElementName isEqualToString:@"photo-caption"]) {
         [currentPost appendToCaption:string];
     }
+    else if ([currentElementName isEqualToString:@"audio-caption"]) {
+        [currentPost appendToCaption:string];
+    }
+    else if ([currentElementName isEqualToString:@"audio-player"]) {
+        [currentPost appendToPlayer:string];
+    }
     else if ([currentElementName isEqualToString:@"video-player"]) {
         [currentPost appendToPlayer:string];
     }
