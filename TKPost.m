@@ -38,6 +38,19 @@ static TKPostTypeToClassNameMapping TKPostTypeStringToClassName[] =
     { nil, nil }
 };
 
+static NSString *TKPostTypeFromTumblrAsString[] =
+{
+    @"",
+    @"regular",
+    @"link",
+    @"quote",
+    @"photo",
+    @"conversation",
+    @"video",
+    @"audio",
+    @"answer"
+};
+
 static NSString *TKPostTypeAsString[] =
 {
     @"",
@@ -130,6 +143,11 @@ static NSString *TKPostFormatAsString[] =
     }
 
     return nil;
+}
+
+- (NSString *)typeAsString
+{
+    return TKPostTypeFromTumblrAsString[self.type];
 }
 
 @end
