@@ -22,6 +22,7 @@
 #import "TKTumblrRequest.h"
 #import "TKTumblrResponse.h"
 
+#import "NSString+MIME.h"
 
 @interface TKTumblrConnection : NSObject
 {
@@ -29,7 +30,7 @@
 }
 
 - (BOOL)sendSynchronousRequest:(TKTumblrRequest *)req returningResponse:(TKTumblrResponse **)res error:(NSError **)error;
-- (BOOL)sendSynchronousWriteRequest:(TKTumblrRequest *)aRequest returningResponse:(TKTumblrResponse **)aResponse error:(NSError **)error;
+- (BOOL)sendSynchronousWriteRequest:(TKTumblrRequest *)theRequest returningResponse:(TKTumblrResponse **)theResponse error:(NSError **)error;
 - (BOOL)sendSynchronousReadRequest:(TKTumblrRequest *)aRequest returningResponse:(TKTumblrResponse **)aResponse error:(NSError **)error;
 
 @end
