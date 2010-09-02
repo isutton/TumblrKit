@@ -309,6 +309,7 @@ static NSString *TKPostFormatAsString[] =
 - (void)dealloc
 {
     [text release];
+    [source release];
     [super dealloc];
 }
 
