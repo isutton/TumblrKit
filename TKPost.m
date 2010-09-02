@@ -223,7 +223,6 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSDictionary *)attributesAsDictionary
 {
-
     NSMutableDictionary *dict = (NSMutableDictionary *)[super attributesAsDictionary];
     [dict setObject:body forKey:@"body"];
     [dict setObject:title forKey:@"title"];
