@@ -150,6 +150,15 @@ static NSString *TKPostFormatAsString[] =
     return TKPostTypeFromTumblrAsString[self.type];
 }
 
+- (NSDictionary *)attributesAsDictionary
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 [self typeAsString], @"type",
+                                 [self group], @"group",
+                                 nil];
+    return dict;
+}
+
 @end
 
 @implementation TKPostRegular
@@ -212,6 +221,15 @@ static NSString *TKPostFormatAsString[] =
     return [NSString stringWithFormat:@"%@, Title: %@, Body: %@", [super description], self.title, self.body];
 }
 
+- (NSDictionary *)attributesAsDictionary
+{
+
+    NSMutableDictionary *dict = (NSMutableDictionary *)[super attributesAsDictionary];
+    [dict setObject:body forKey:@"body"];
+    [dict setObject:title forKey:@"title"];
+    return dict;
+}
+
 @end
 
 @implementation TKPostLink
@@ -263,6 +281,14 @@ static NSString *TKPostFormatAsString[] =
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@, Link Text: %@, Link URL: %@", [super description], self.text, self.URL];
+}
+
+- (NSDictionary *)attributesAsDictionary
+{
+    NSMutableDictionary *dict = (NSMutableDictionary *)[super attributesAsDictionary];
+    [dict setObject:text forKey:@"name"];
+    [dict setObject:[URL absoluteString] forKey:@"url"];
+    return dict;
 }
 
 @end
@@ -327,6 +353,14 @@ static NSString *TKPostFormatAsString[] =
     return [NSString stringWithFormat:@"%@, Quote Text: %@, Quote Source: %@", [super description], self.text, self.source];
 }
 
+- (NSDictionary *)attributesAsDictionary
+{
+    NSMutableDictionary *dict = (NSMutableDictionary *)[super attributesAsDictionary];
+    [dict setObject:text forKey:@"quote"];
+    [dict setObject:source forKey:@"whatever"];
+    return dict;
+}
+
 @end
 
 @implementation TKPostConversation
@@ -368,6 +402,14 @@ static NSString *TKPostFormatAsString[] =
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@, Conversation Text: %@", [super description], self.text];
+}
+
+- (NSDictionary *)attributesAsDictionary
+{
+    NSMutableDictionary *dict = (NSMutableDictionary *)[super attributesAsDictionary];
+    [dict setObject:text forKey:@"conversation"];
+    [dict setObject:@"" forKey:@"title"];
+    return dict;
 }
 
 @end

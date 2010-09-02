@@ -71,6 +71,7 @@ typedef enum
 
 - (id)initWithAttributes:(NSDictionary *)attributeDict;
 - (NSString *)typeAsString;
+- (NSDictionary *)attributesAsDictionary;
 
 @end
 
