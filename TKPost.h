@@ -55,6 +55,7 @@ typedef enum
     NSString *reblogKey;
     TKPostType type;
     TKPostFormat format;
+    NSString *group;
 }
 
 @property (nonatomic,copy) NSNumber *postID;
@@ -64,6 +65,7 @@ typedef enum
 @property (nonatomic,copy) NSString *reblogKey;
 @property (nonatomic,assign) TKPostType type;
 @property (nonatomic,assign) TKPostFormat format;
+@property (nonatomic,copy) NSString *group;
 
 + (id)postWithAttributes:(NSDictionary *)attributeDict;
 

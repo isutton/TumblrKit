@@ -72,7 +72,7 @@ static NSString *TKPostFormatAsString[] =
 
 @implementation TKPost
 
-@synthesize postId, url, slug, date, reblogKey, type, format;
+@synthesize postID, url, slug, date, reblogKey, type, format, group;
 
 - (id)init
 {
