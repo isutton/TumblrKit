@@ -28,7 +28,7 @@
     NSString *password;
     NSUInteger startIndex;
     NSUInteger numberOfPosts;
-    NSUInteger postId;
+    NSUInteger postID;
     TKPostFilter postFilter;
     TKPostType postType;
     TKPost *post;
@@ -40,7 +40,7 @@
 @property (copy) NSString *password;
 @property (assign) NSUInteger startIndex;
 @property (assign) NSUInteger numberOfPosts;
-@property (assign) NSUInteger postId;
+@property (assign) NSUInteger postID;
 @property (assign) TKPostFilter postFilter;
 @property (assign) TKPostType postType;
 @property (assign) TKPost *post;

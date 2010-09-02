@@ -48,7 +48,7 @@ typedef enum
 
 @interface TKPost : NSObject
 {
-    NSNumber *postId;
+    NSNumber *postID;
     NSString *url;
     NSString *slug;
     NSDate *date;
@@ -57,7 +57,7 @@ typedef enum
     TKPostFormat format;
 }
 
-@property (nonatomic,copy) NSNumber *postId;
+@property (nonatomic,copy) NSNumber *postID;
 @property (nonatomic,copy) NSString *url;
 @property (nonatomic,copy) NSString *slug;
 @property (nonatomic,copy) NSDate *date;

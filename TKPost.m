@@ -64,7 +64,7 @@ static NSString *TKPostFormatAsString[] =
 - (id)init
 {
     if ((self = [super init]) != nil) {
-        self.postId = nil;
+        self.postID = nil;
         self.url = nil;
         self.type = TKPostTypeRegular;
         self.reblogKey = nil;
@@ -79,7 +79,7 @@ static NSString *TKPostFormatAsString[] =
 - (id)initWithAttributes:(NSDictionary *)attributeDict
 {
     if ((self = [self init]) != nil) {
-        self.postId = [attributeDict objectForKey:@"id"];
+        self.postID = [attributeDict objectForKey:@"id"];
         self.url = [attributeDict objectForKey:@"url"];
         self.date = [attributeDict objectForKey:@"date"];
         self.slug = [attributeDict objectForKey:@"slug"];
@@ -99,7 +99,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (void)dealloc
 {
-    [postId release];
+    [postID release];
     [url release];
     [date release];
     [slug release];
@@ -109,7 +109,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"Post Id: %@, Date: %@, URL: %@, Slug: %@, Type: %@, Reblog Key: %@, Format: %@", self.postId, self.date, self.url, self.slug, TKPostTypeAsString[self.type], self.reblogKey, TKPostFormatAsString[self.format]];
+    return [NSString stringWithFormat:@"Post ID: %@, Date: %@, URL: %@, Slug: %@, Type: %@, Reblog Key: %@, Format: %@", self.postID, self.date, self.url, self.slug, TKPostTypeAsString[self.type], self.reblogKey, TKPostFormatAsString[self.format]];
 }
 
 + (id)postWithAttributes:(NSDictionary *)attributeDict

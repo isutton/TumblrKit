@@ -42,11 +42,22 @@ static NSString *TKPostFilterAsQueryString[] =
 
 @implementation TKTumblrRequest
 
-@synthesize URL, email, password, startIndex, numberOfPosts, postId, postFilter, postType, post, tag;
+@synthesize URL, email, password, startIndex, numberOfPosts, postID, postFilter, postType, post, tag;
 
 + (id)requestWithURL:(NSURL *)theURL
 {
     return [[[TKTumblrRequest alloc] initWithURL:theURL] autorelease];
+}
+
++ (id)requestWithDomain:(NSString *)theDomain
+{
+    return [[[TKTumblrRequest alloc] initWithDomain:theDomain] autorelease];
+}
+
+- (id)initWithDomain:(NSString *)theDomain
+{
+    NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", theDomain]];
+    return [self initWithURL:theURL];
 }
 
 - (id)initWithURL:(NSURL *)theURL
@@ -55,7 +66,7 @@ static NSString *TKPostFilterAsQueryString[] =
         self.URL = theURL;
         self.startIndex = 0;
         self.numberOfPosts = 20;
-        self.postId = 0;
+        self.postID = 0;
         self.postFilter = TKPostFilterNone;
         self.postType = TKPostTypeAll;
         self.post = nil;
@@ -83,8 +94,8 @@ static NSString *TKPostFilterAsQueryString[] =
     // We can have either postId or combination of startIndex, numberOfPosts and
     // postType. If postId has precedence if present.
     //
-    if (postId > 0) {
-        [URLString appendFormat:@"?id=%i&", postId];
+    if (postID > 0) {
+        [URLString appendFormat:@"?id=%i&", postID];
     }
     else {
         [URLString appendFormat:@"?start=%i&num=%i&", startIndex, numberOfPosts];
