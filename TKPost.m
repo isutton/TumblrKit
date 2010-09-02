@@ -77,13 +77,12 @@ static NSString *TKPostFormatAsString[] =
 - (id)init
 {
     if ((self = [super init]) != nil) {
-        self.postID = nil;
-        self.url = nil;
-        self.type = TKPostTypeRegular;
-        self.reblogKey = nil;
-        self.date = nil;
-        self.url = nil;
-        self.format = TKPostFormatHTML;
+        postID = nil;
+        url = nil;
+        reblogKey = nil;
+        date = nil;
+        url = nil;
+        format = TKPostFormatHTML;
     }
 
     return self;
@@ -92,19 +91,17 @@ static NSString *TKPostFormatAsString[] =
 - (id)initWithAttributes:(NSDictionary *)attributeDict
 {
     if ((self = [self init]) != nil) {
+
+        // Deliberate use of "self." here, since we want to retain/copy as
+        // appropriate.
         self.postID = [attributeDict objectForKey:@"id"];
         self.url = [attributeDict objectForKey:@"url"];
         self.date = [attributeDict objectForKey:@"date"];
         self.slug = [attributeDict objectForKey:@"slug"];
         self.reblogKey = [attributeDict objectForKey:@"reblog-key"];
-
-        NSString *format_ = [attributeDict objectForKey:@"format"];
-
-        if ([format_ isEqualToString:@"html"])
-            self.format = TKPostFormatHTML;
-        else
-            self.format = TKPostFormatMarkdown;
-
+        self.format = [[attributeDict objectForKey:@"format"] isEqualToString:@"html"]
+            ? TKPostFormatHTML
+            : TKPostFormatMarkdown;
     }
 
     return self;
@@ -168,6 +165,7 @@ static NSString *TKPostFormatAsString[] =
     if ((self = [super init]) != nil) {
         self.title = @"";
         self.body = @"";
+        self.type = TKPostTypeRegular;
     }
 
     return self;
