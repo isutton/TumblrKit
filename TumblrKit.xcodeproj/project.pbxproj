@@ -21,6 +21,8 @@
 		82A53CD011ED0DBE006BA92A /* TKTumblrResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A53CCE11ED0DBE006BA92A /* TKTumblrResponse.m */; };
 		82A53D7111ED1CE7006BA92A /* TKTumblrReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A53C2711EC9E97006BA92A /* TKTumblrReader.m */; };
 		82A53DD111ED938C006BA92A /* TKTumblr.h in Headers */ = {isa = PBXBuildFile; fileRef = 82A53DD011ED938C006BA92A /* TKTumblr.h */; };
+		82F8B632122FC144005B5045 /* NSString+MIME.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F8B630122FC144005B5045 /* NSString+MIME.h */; };
+		82F8B633122FC144005B5045 /* NSString+MIME.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F8B631122FC144005B5045 /* NSString+MIME.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -56,6 +58,8 @@
 		82A53CCD11ED0DBE006BA92A /* TKTumblrResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTumblrResponse.h; sourceTree = "<group>"; };
 		82A53CCE11ED0DBE006BA92A /* TKTumblrResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTumblrResponse.m; sourceTree = "<group>"; };
 		82A53DD011ED938C006BA92A /* TKTumblr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTumblr.h; sourceTree = "<group>"; };
+		82F8B630122FC144005B5045 /* NSString+MIME.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MIME.h"; sourceTree = "<group>"; };
+		82F8B631122FC144005B5045 /* NSString+MIME.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MIME.m"; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* TumblrKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TumblrKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -136,6 +140,8 @@
 				82A53DD011ED938C006BA92A /* TKTumblr.h */,
 				826CD95C11EDDAD600F5CB24 /* NSString+TumblrKit.h */,
 				826CD95D11EDDAD600F5CB24 /* NSString+TumblrKit.m */,
+				82F8B630122FC144005B5045 /* NSString+MIME.h */,
+				82F8B631122FC144005B5045 /* NSString+MIME.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -180,6 +186,7 @@
 				82A53CCF11ED0DBE006BA92A /* TKTumblrResponse.h in Headers */,
 				82A53DD111ED938C006BA92A /* TKTumblr.h in Headers */,
 				826CD95E11EDDAD600F5CB24 /* NSString+TumblrKit.h in Headers */,
+				82F8B632122FC144005B5045 /* NSString+MIME.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +278,7 @@
 				82A53CCC11ED0DB1006BA92A /* TKTumblrRequest.m in Sources */,
 				82A53CD011ED0DBE006BA92A /* TKTumblrResponse.m in Sources */,
 				826CD95F11EDDAD600F5CB24 /* NSString+TumblrKit.m in Sources */,
+				82F8B633122FC144005B5045 /* NSString+MIME.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
