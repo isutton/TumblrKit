@@ -25,10 +25,10 @@
 - (NSString *)stringByAddingQueryPercentEscapesUsingEncoding:(NSStringEncoding)encoding
 {
     NSString *result = (NSString *)CFURLCreateStringByAddingPercentEscapes(
-        kCFAllocatorDefault,
-        (CFStringRef)self,
         NULL,
-        CFSTR("?=&+"),
+        (CFStringRef)[[self mutableCopy] autorelease],
+        NULL,
+        CFSTR("￼=,!$&'()*+;@?\n\"<>#\t :/"),
         kCFStringEncodingUTF8);
     return [result autorelease];
 }
