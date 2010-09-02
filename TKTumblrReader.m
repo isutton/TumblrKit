@@ -67,44 +67,22 @@
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    if ([currentElementName isEqualToString:@"photo-caption"]) {
-        [currentPost appendToCaption:string];
+    static NSDictionary *elementToSelectorDict = nil;
+
+    if (!elementToSelectorDict) {
+        elementToSelectorDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"appendToText:", @"text",
+                            @"appendToCaption:",@"caption",
+                            @"appendToPlayer:", @"player",
+                            @"appendToBody:", @"body",
+                            @"setURLWithString:", @"url",
+                            nil];
     }
-    else if ([currentElementName isEqualToString:@"audio-caption"]) {
-        [currentPost appendToCaption:string];
-    }
-    else if ([currentElementName isEqualToString:@"audio-player"]) {
-        [currentPost appendToPlayer:string];
-    }
-    else if ([currentElementName isEqualToString:@"video-player"]) {
-        [currentPost appendToPlayer:string];
-    }
-    else if ([currentElementName isEqualToString:@"video-source"]) {
-        [currentPost appendToSource:string];
-    }
-    else if ([currentElementName isEqualToString:@"video-caption"]) {
-        [currentPost appendToCaption:string];
-    }
-    else if ([currentElementName isEqualToString:@"conversation-text"]) {
-        [currentPost appendToText:string];
-    }
-    else if ([currentElementName isEqualToString:@"quote-text"]) {
-        [currentPost appendToText:string];
-    }
-    else if ([currentElementName isEqualToString:@"quote-source"]) {
-        [currentPost appendToSource:string];
-    }
-    else if ([currentElementName isEqualToString:@"regular-title"]) {
-        [currentPost appendToTitle:string];
-    }
-    else if ([currentElementName isEqualToString:@"regular-body"]) {
-        [currentPost appendToBody:string];
-    }
-    else if ([currentElementName isEqualToString:@"link-text"]) {
-        [currentPost appendToText:string];
-    }
-    else if ([currentElementName isEqualToString:@"link-url"]) {
-        [currentPost setURLWithString:string];
+
+    NSString *key = [[currentElementName componentsSeparatedByString:@"-"] lastObject];
+    SEL selector = NSSelectorFromString([elementToSelectorDict objectForKey:key]);
+    if (selector) {
+        [currentPost performSelector:selector withObject:string];
     }
 }
 
