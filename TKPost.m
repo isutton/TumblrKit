@@ -335,7 +335,7 @@ static NSString *TKPostFormatAsString[] =
 {
     if (aSource != source) {
         [source release];
-        text = [aSource mutableCopy];
+        source = [aSource mutableCopy];
     }
 }
 
