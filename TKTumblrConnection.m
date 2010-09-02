@@ -48,6 +48,8 @@
     if (aResponse) {
         *aResponse = [TKTumblrResponse responseWithPosts:reader.posts];
     }
+    [reader release];
+    [parser release];
 
     return YES;
 }
