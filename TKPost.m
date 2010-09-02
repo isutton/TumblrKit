@@ -134,12 +134,7 @@ static NSString *TKPostFormatAsString[] =
         }
     }
 
-    if (postClass) {
-        TKPost *post = [(TKPost *)[postClass alloc] initWithAttributes:attributeDict];
-        return post;
-    }
-
-    return nil;
+    return [(TKPost *)[postClass alloc] initWithAttributes:attributeDict];
 }
 
 - (NSString *)typeAsString
