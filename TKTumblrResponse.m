@@ -23,17 +23,34 @@
 
 @implementation TKTumblrResponse
 
-@synthesize posts;
+@synthesize posts, returnCode, postID;
 
 + (id)responseWithPosts:(NSArray *)somePosts
 {
-    return [[[self alloc] initWithPosts:somePosts] autorelease];
+    return [[[self alloc] initWithPosts:somePosts postID:nil] autorelease];
 }
 
-- (id)initWithPosts:(NSArray *)somePosts
++ (id)responseWithPostID:(NSNumber *)thePostID
+{
+    return [[[self alloc] initWithPosts:nil postID:thePostID] autorelease];
+}
+
++ (id)responseWithReturnCode:(TKTumblrResponseReturnCode)theReturnCode
+{
+    return [[self alloc] initWithPosts:nil postID:nil returnCode:theReturnCode];
+}
+
+- (id)initWithPosts:(NSArray *)somePosts postID:(NSNumber *)thePostID
+{
+    return [self initWithPosts:somePosts postID:thePostID returnCode:TKTumblrCreated];
+}
+
+- (id)initWithPosts:(NSArray *)somePosts postID:(NSNumber *)thePostID returnCode:(TKTumblrResponseReturnCode)theReturnCode
 {
     if ((self = [super init]) != nil) {
         self.posts = somePosts;
+        self.postID = thePostID;
+        self.returnCode = theReturnCode;
     }
     
     return self;    
@@ -43,6 +60,11 @@
 {
     [posts release];
     [super dealloc];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"Posts: %@, Post ID: %@", self.posts, self.postID];
 }
 
 @end

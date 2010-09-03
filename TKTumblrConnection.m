@@ -77,14 +77,32 @@
 
     [theURLRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
 
-    NSURLResponse *theURLResponse = nil;
+    NSHTTPURLResponse *theURLResponse = nil;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:theURLRequest returningResponse:&theURLResponse error:error];
 
-    // TODO: Verify responseData and fill TKTumblrResponse.
-
+    // Release the request before we can enter some potentially danger
+    // code path.
     [theURLRequest release];
 
-    return NO;
+    // Bail out quickly if NSURLConnection populated error.
+    if (([theURLResponse statusCode] != TKTumblrCreated)) {
+        if (theResponse)
+            *theResponse = [TKTumblrResponse responseWithReturnCode:[theURLResponse statusCode]];
+        return NO;
+    }
+    
+    // If we don't have a response to fill in, just leave.
+    if (!theResponse)
+        return YES;
+    
+    // The following code will only execute when we get a TKTumblrCreated response, so it's
+    // safe to assume that responseData will have only the postID of the post we created.
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    *theResponse = [TKTumblrResponse responseWithPostID:[formatter numberFromString:[[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]]];
+    [formatter release];
+
+    return YES;
 }
 
 @end

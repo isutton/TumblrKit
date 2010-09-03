@@ -21,15 +21,27 @@
 #import <Cocoa/Cocoa.h>
 #import "TKPost.h"
 
+typedef enum {
+    TKTumblrCreated = 201,
+    TKTumblrBadRequest = 400,
+    TKTumblrForbidden = 403
+} TKTumblrResponseReturnCode;
 
 @interface TKTumblrResponse : NSObject 
 {
     NSArray *posts;
+    NSNumber *postID;
+    TKTumblrResponseReturnCode returnCode;
 }
 
 @property (retain) NSArray *posts;
+@property (copy) NSNumber *postID;
+@property (assign) TKTumblrResponseReturnCode returnCode;
 
 + (id)responseWithPosts:(NSArray *)somePosts;
-- (id)initWithPosts:(NSArray *)somePosts;
++ (id)responseWithPostID:(NSNumber *)postID;
++ (id)responseWithReturnCode:(TKTumblrResponseReturnCode)theReturnCode;
+- (id)initWithPosts:(NSArray *)somePosts postID:(NSNumber *)thePostID returnCode:(TKTumblrResponseReturnCode)theReturnCode;
+- (id)initWithPosts:(NSArray *)somePosts postID:(NSNumber *)thePostID;
 
 @end
