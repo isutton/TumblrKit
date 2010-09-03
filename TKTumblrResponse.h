@@ -43,5 +43,6 @@ typedef enum {
 + (id)responseWithReturnCode:(TKTumblrResponseReturnCode)theReturnCode;
 - (id)initWithPosts:(NSArray *)somePosts postID:(NSNumber *)thePostID returnCode:(TKTumblrResponseReturnCode)theReturnCode;
 - (id)initWithPosts:(NSArray *)somePosts postID:(NSNumber *)thePostID;
+- (NSString *)returnCodeAsString;
 
 @end

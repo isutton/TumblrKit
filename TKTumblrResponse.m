@@ -64,7 +64,17 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"Posts: %@, Post ID: %@", self.posts, self.postID];
+    return [NSString stringWithFormat:@"Posts: %@, Post ID: %@, Return Code: %@", self.posts, self.postID, [self returnCodeAsString]];
+}
+
+- (NSString *)returnCodeAsString
+{
+    if (self.returnCode == TKTumblrCreated)
+        return @"Created";
+    else if (self.returnCode == TKTumblrBadRequest)
+        return @"Bad Request";
+    else
+        return @"Forbidden";
 }
 
 @end
