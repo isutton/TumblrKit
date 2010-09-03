@@ -52,5 +52,6 @@
 - (BOOL)isWrite;
 - (NSURL *)URLForRead;
 - (NSURL *)URLForWrite;
+- (NSDictionary *)attributesAsDictionary;
 
 @end

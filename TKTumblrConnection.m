@@ -56,35 +56,32 @@
 
 - (BOOL)sendSynchronousWriteRequest:(TKTumblrRequest *)theRequest returningResponse:(TKTumblrResponse **)theResponse error:(NSError **)error
 {
-    NSString *email = theRequest.email;
-    NSString *password = theRequest.password;
-    TKPost *post = theRequest.post;
-    NSURL *URLForWrite = [[NSURL alloc] initWithString:@"http://www.tumblr.com/api/write"];
+    NSMutableDictionary *postDict = (NSMutableDictionary *)[theRequest attributesAsDictionary];
 
-    NSMutableDictionary *postDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                     [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], @"email",
-                                     [password stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], @"password",
-                                     nil];
-
-    [postDict addEntriesFromDictionary:[post attributesAsDictionary]];
+    [postDict addEntriesFromDictionary:[theRequest.post attributesAsDictionary]];
 
     NSString *postString = [NSString multipartMIMEStringWithDictionary:postDict];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postString length]];
 
-    NSMutableURLRequest *theURLRequest = [[NSMutableURLRequest alloc] initWithURL:URLForWrite];
+    NSMutableURLRequest *theURLRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.tumblr.com/api/write"]];
 
     [theURLRequest setHTTPMethod:@"POST"];
-    [theURLRequest setValue:@"8bit" forHTTPHeaderField:@"Content-Transfer-Encoding"];
-    [theURLRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [theURLRequest setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", [NSString MIMEBoundary]] forHTTPHeaderField:@"Content-Type"];
+
+    [theURLRequest setValue:@"8bit"
+         forHTTPHeaderField:@"Content-Transfer-Encoding"];
+
+    [theURLRequest setValue:[NSString stringWithFormat:@"%d", [postString length]]
+         forHTTPHeaderField:@"Content-Length"];
+
+    [theURLRequest setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", [NSString MIMEBoundary]]
+         forHTTPHeaderField:@"Content-Type"];
+
     [theURLRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
 
     NSURLResponse *theURLResponse = nil;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:theURLRequest returningResponse:&theURLResponse error:error];
 
-    // Verify responseData and fill TKTumblrResponse.
+    // TODO: Verify responseData and fill TKTumblrResponse.
 
-    [URLForWrite release];
     [theURLRequest release];
 
     return NO;

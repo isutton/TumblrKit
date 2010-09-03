@@ -128,4 +128,13 @@ static NSString *TKPostFilterAsQueryString[] =
     return self.post != nil;
 }
 
+- (NSDictionary *)attributesAsDictionary
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 email, @"email",
+                                 password, @"password",
+                                 nil];
+    return dict;
+}
+
 @end
