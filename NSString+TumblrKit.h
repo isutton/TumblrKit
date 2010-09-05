@@ -18,7 +18,7 @@
 //  NSString+TumblrKit.h by Igor Sutton on 7/14/10.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 @interface NSString (TumblrKit)
 

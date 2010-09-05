@@ -18,7 +18,7 @@
 //  TKPost.h by Igor Sutton on 7/12/10.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 typedef enum
 {

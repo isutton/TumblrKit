@@ -18,7 +18,7 @@
 //  TKTumblrRequest.h by Igor Sutton on 7/13/10.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import "TKPost.h"
 
 @interface TKTumblrRequest : NSObject
@@ -49,6 +49,7 @@
 + (id)requestWithURL:(NSURL *)theURL;
 
 - (id)initWithURL:(NSURL *)theURL;
+- (id)initWithDomain:(NSString *)theDomain;
 - (BOOL)isWrite;
 - (NSURL *)URLForRead;
 - (NSURL *)URLForWrite;

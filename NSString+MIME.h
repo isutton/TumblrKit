@@ -6,7 +6,7 @@
 //  Copyright 2010 StrayDev.com. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //
 // The following code (and its implementation) was found in:

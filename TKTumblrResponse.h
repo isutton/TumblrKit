@@ -18,7 +18,7 @@
 //  TKTumblrResponse.h by Igor Sutton on 7/13/10.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import "TKPost.h"
 
 typedef enum {
