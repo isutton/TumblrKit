@@ -22,7 +22,11 @@
 #import "TKPost.h"
 
 
+#if MAC_OS_X_VERSION_10_6
+@interface TKTumblrReader : NSObject <NSXMLParserDelegate>
+#else
 @interface TKTumblrReader : NSObject
+#endif
 {
     NSMutableArray *posts;
     NSString *currentElementName;
