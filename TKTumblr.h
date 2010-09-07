@@ -18,5 +18,55 @@
 //  TKTumblr.h by Igor Sutton on 7/14/10.
 //
 
+#import "TKPost.h"
+#import "TKTumblrReadRequest.h"
+
 
 #define Log(format, ...) NSLog(@"%s:%@", __PRETTY_FUNCTION__, [NSString stringWithFormat:format, ## __VA_ARGS__]);
+
+typedef enum {
+    TKTumblrCreated = 201,
+    TKTumblrBadRequest = 400,
+    TKTumblrForbidden = 403
+} TKTumblrResponseReturnCode;
+
+
+@protocol TKTumblrDelegate
+
+@optional
+- (void)tumblrDidReceivePost:(TKPost *)thePost withDomain:(NSString *)theDomain;
+
+- (void)tumblrWillUploadPost:(TKPost *)thePost withDomain:(NSString *)theDomain;
+- (void)tumblrDidUploadPost:(TKPost *)thePost withDomain:(NSString *)theDomain postID:(NSNumber *)thePostID;
+- (void)tumblrDidFailToUploadPost:(TKPost *)thePost withDomain:(NSString *)theDomain returnCode:(TKTumblrResponseReturnCode)theReturnCode;
+
+@end
+
+@interface TKTumblr : NSObject <NSXMLParserDelegate,TKTumblrDelegate>
+{
+    id<TKTumblrDelegate,NSObject> delegate;
+
+    NSString *email;
+    NSString *password;
+
+    TKPost *currentPost;
+    TKPost *requestedPost;
+    NSString *currentElementName;
+}
+
+@property (assign) id<TKTumblrDelegate,NSObject> delegate;
+@property (nonatomic,copy) NSString *email;
+@property (nonatomic,copy) NSString *password;
+@property (nonatomic,retain) TKPost *currentPost;
+@property (nonatomic,retain) TKPost *requestedPost;
+@property (nonatomic,copy) NSString *currentElementName;
+
+- (id)initWithEmail:(NSString *)theEmail andPassword:(NSString *)thePassword;
+- (BOOL)uploadPost:(TKPost *)thePost;
+- (BOOL)uploadPost:(TKPost *)thePost withDomain:(NSString *)theDomain;
+- (void)postsWithReadRequest:(TKTumblrReadRequest *)theReadRequest;
+- (TKPost *)postWithID:(NSNumber *)thePostID andDomain:(NSString *)theDomain;
+- (NSDictionary *)attributesAsDictionary;
+
+@end
+

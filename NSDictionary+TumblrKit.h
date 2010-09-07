@@ -15,27 +15,14 @@
 //  You should have received a copy of the GNU General Public License
 //  along with TumblrKit.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  TKProvider.h by Igor Sutton on 7/13/10.
+//  NSDictionary+TumblrKit.h by Igor Sutton on 9/7/10.
 //
 
-#import <Foundation/Foundation.h>
-#import "TKPost.h"
+#import <Cocoa/Cocoa.h>
 
 
-#if __MAC_OS_X_VERSION_MIN_REQUIRED < 1060
-@interface TKTumblrReader : NSObject
-#else
-@interface TKTumblrReader : NSObject <NSXMLParserDelegate>
-#endif
-{
-    NSMutableArray *posts;
-    NSString *currentElementName;
-    id currentPost;
-}
+@interface NSDictionary (TumblrKit)
 
-@property (copy) NSString *currentElementName;
-@property (assign) id currentPost;
-
-- (NSArray *)posts;
+- (NSString *)multipartMIMEString;
 
 @end

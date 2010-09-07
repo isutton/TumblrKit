@@ -6,6 +6,20 @@
 	objectVersion = 45;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		82B09E70123543700006D003 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 82B09E781235438A0006D003 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				82B09E6F123543700006D003 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		826CD95E11EDDAD600F5CB24 /* NSString+TumblrKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 826CD95C11EDDAD600F5CB24 /* NSString+TumblrKit.h */; };
 		826CD95F11EDDAD600F5CB24 /* NSString+TumblrKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 826CD95D11EDDAD600F5CB24 /* NSString+TumblrKit.m */; };
@@ -13,24 +27,16 @@
 		827E467911EB0D9100684466 /* TKPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 827E467711EB0D9100684466 /* TKPost.m */; };
 		827E46DE11EB1BDD00684466 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 827E46DD11EB1BDD00684466 /* Test.m */; };
 		827E470E11EB1D4100684466 /* TumblrKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TumblrKit.framework */; };
-		82A53CC711ED0D99006BA92A /* TKTumblrConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 82A53CC511ED0D99006BA92A /* TKTumblrConnection.h */; };
-		82A53CC811ED0D99006BA92A /* TKTumblrConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A53CC611ED0D99006BA92A /* TKTumblrConnection.m */; };
-		82A53CCB11ED0DB1006BA92A /* TKTumblrRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 82A53CC911ED0DB1006BA92A /* TKTumblrRequest.h */; };
-		82A53CCC11ED0DB1006BA92A /* TKTumblrRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A53CCA11ED0DB1006BA92A /* TKTumblrRequest.m */; };
-		82A53CCF11ED0DBE006BA92A /* TKTumblrResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 82A53CCD11ED0DBE006BA92A /* TKTumblrResponse.h */; };
-		82A53CD011ED0DBE006BA92A /* TKTumblrResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A53CCE11ED0DBE006BA92A /* TKTumblrResponse.m */; };
-		82A53D7111ED1CE7006BA92A /* TKTumblrReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A53C2711EC9E97006BA92A /* TKTumblrReader.m */; };
 		82A53DD111ED938C006BA92A /* TKTumblr.h in Headers */ = {isa = PBXBuildFile; fileRef = 82A53DD011ED938C006BA92A /* TKTumblr.h */; };
 		82B09D4A12352EBF0006D003 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		82B09D89123531FF0006D003 /* TKPost.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 827E467611EB0D9100684466 /* TKPost.h */; };
-		82B09D8A123531FF0006D003 /* TKTumblrReader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82A53C2611EC9E97006BA92A /* TKTumblrReader.h */; };
-		82B09D8B123531FF0006D003 /* TKTumblrRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82A53CC911ED0DB1006BA92A /* TKTumblrRequest.h */; };
-		82B09D8C123531FF0006D003 /* TKTumblrResponse.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82A53CCD11ED0DBE006BA92A /* TKTumblrResponse.h */; };
 		82B09D8D123531FF0006D003 /* TKTumblr.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82A53DD011ED938C006BA92A /* TKTumblr.h */; };
 		82B09D8E123531FF0006D003 /* NSString+TumblrKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 826CD95C11EDDAD600F5CB24 /* NSString+TumblrKit.h */; };
-		82B09D8F123531FF0006D003 /* NSString+MIME.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F8B630122FC144005B5045 /* NSString+MIME.h */; };
-		82F8B632122FC144005B5045 /* NSString+MIME.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F8B630122FC144005B5045 /* NSString+MIME.h */; };
-		82F8B633122FC144005B5045 /* NSString+MIME.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F8B631122FC144005B5045 /* NSString+MIME.m */; };
+		82B09EB0123643A70006D003 /* TKTumblr.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B09EAF123643A70006D003 /* TKTumblr.m */; };
+		82B09F42123664CD0006D003 /* NSDictionary+TumblrKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 82B09F40123664CD0006D003 /* NSDictionary+TumblrKit.h */; };
+		82B09F43123664CD0006D003 /* NSDictionary+TumblrKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B09F41123664CD0006D003 /* NSDictionary+TumblrKit.m */; };
+		82B0A019123675EF0006D003 /* TKTumblrReadRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 82B0A017123675EF0006D003 /* TKTumblrReadRequest.h */; };
+		82B0A01A123675EF0006D003 /* TKTumblrReadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B0A018123675EF0006D003 /* TKTumblrReadRequest.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -52,12 +58,8 @@
 			dstSubfolderSpec = 1;
 			files = (
 				82B09D89123531FF0006D003 /* TKPost.h in CopyFiles */,
-				82B09D8A123531FF0006D003 /* TKTumblrReader.h in CopyFiles */,
-				82B09D8B123531FF0006D003 /* TKTumblrRequest.h in CopyFiles */,
-				82B09D8C123531FF0006D003 /* TKTumblrResponse.h in CopyFiles */,
 				82B09D8D123531FF0006D003 /* TKTumblr.h in CopyFiles */,
 				82B09D8E123531FF0006D003 /* NSString+TumblrKit.h in CopyFiles */,
-				82B09D8F123531FF0006D003 /* NSString+MIME.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,17 +75,13 @@
 		827E467711EB0D9100684466 /* TKPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPost.m; sourceTree = "<group>"; };
 		827E46D611EB1BA000684466 /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
 		827E46DD11EB1BDD00684466 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
-		82A53C2611EC9E97006BA92A /* TKTumblrReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTumblrReader.h; sourceTree = "<group>"; };
-		82A53C2711EC9E97006BA92A /* TKTumblrReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTumblrReader.m; sourceTree = "<group>"; };
-		82A53CC511ED0D99006BA92A /* TKTumblrConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTumblrConnection.h; sourceTree = "<group>"; };
-		82A53CC611ED0D99006BA92A /* TKTumblrConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTumblrConnection.m; sourceTree = "<group>"; };
-		82A53CC911ED0DB1006BA92A /* TKTumblrRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTumblrRequest.h; sourceTree = "<group>"; };
-		82A53CCA11ED0DB1006BA92A /* TKTumblrRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTumblrRequest.m; sourceTree = "<group>"; };
-		82A53CCD11ED0DBE006BA92A /* TKTumblrResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTumblrResponse.h; sourceTree = "<group>"; };
-		82A53CCE11ED0DBE006BA92A /* TKTumblrResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTumblrResponse.m; sourceTree = "<group>"; };
 		82A53DD011ED938C006BA92A /* TKTumblr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTumblr.h; sourceTree = "<group>"; };
-		82F8B630122FC144005B5045 /* NSString+MIME.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MIME.h"; sourceTree = "<group>"; };
-		82F8B631122FC144005B5045 /* NSString+MIME.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MIME.m"; sourceTree = "<group>"; };
+		82B09EAF123643A70006D003 /* TKTumblr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTumblr.m; sourceTree = "<group>"; };
+		82B09F40123664CD0006D003 /* NSDictionary+TumblrKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+TumblrKit.h"; sourceTree = "<group>"; };
+		82B09F41123664CD0006D003 /* NSDictionary+TumblrKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+TumblrKit.m"; sourceTree = "<group>"; };
+		82B0A017123675EF0006D003 /* TKTumblrReadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTumblrReadRequest.h; sourceTree = "<group>"; };
+		82B0A018123675EF0006D003 /* TKTumblrReadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTumblrReadRequest.m; sourceTree = "<group>"; };
+		82B0A044123678940006D003 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* TumblrKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TumblrKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -143,6 +141,7 @@
 			children = (
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
+				82B0A044123678940006D003 /* README.md */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -150,21 +149,13 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				82B0A029123676790006D003 /* TumblrKit Additions */,
 				827E467611EB0D9100684466 /* TKPost.h */,
 				827E467711EB0D9100684466 /* TKPost.m */,
-				82A53C2611EC9E97006BA92A /* TKTumblrReader.h */,
-				82A53C2711EC9E97006BA92A /* TKTumblrReader.m */,
-				82A53CC511ED0D99006BA92A /* TKTumblrConnection.h */,
-				82A53CC611ED0D99006BA92A /* TKTumblrConnection.m */,
-				82A53CC911ED0DB1006BA92A /* TKTumblrRequest.h */,
-				82A53CCA11ED0DB1006BA92A /* TKTumblrRequest.m */,
-				82A53CCD11ED0DBE006BA92A /* TKTumblrResponse.h */,
-				82A53CCE11ED0DBE006BA92A /* TKTumblrResponse.m */,
 				82A53DD011ED938C006BA92A /* TKTumblr.h */,
-				826CD95C11EDDAD600F5CB24 /* NSString+TumblrKit.h */,
-				826CD95D11EDDAD600F5CB24 /* NSString+TumblrKit.m */,
-				82F8B630122FC144005B5045 /* NSString+MIME.h */,
-				82F8B631122FC144005B5045 /* NSString+MIME.m */,
+				82B09EAF123643A70006D003 /* TKTumblr.m */,
+				82B0A017123675EF0006D003 /* TKTumblrReadRequest.h */,
+				82B0A018123675EF0006D003 /* TKTumblrReadRequest.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -193,6 +184,17 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		82B0A029123676790006D003 /* TumblrKit Additions */ = {
+			isa = PBXGroup;
+			children = (
+				82B09F40123664CD0006D003 /* NSDictionary+TumblrKit.h */,
+				82B09F41123664CD0006D003 /* NSDictionary+TumblrKit.m */,
+				826CD95C11EDDAD600F5CB24 /* NSString+TumblrKit.h */,
+				826CD95D11EDDAD600F5CB24 /* NSString+TumblrKit.m */,
+			);
+			name = "TumblrKit Additions";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -201,12 +203,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				827E467811EB0D9100684466 /* TKPost.h in Headers */,
-				82A53CC711ED0D99006BA92A /* TKTumblrConnection.h in Headers */,
-				82A53CCB11ED0DB1006BA92A /* TKTumblrRequest.h in Headers */,
-				82A53CCF11ED0DBE006BA92A /* TKTumblrResponse.h in Headers */,
 				82A53DD111ED938C006BA92A /* TKTumblr.h in Headers */,
 				826CD95E11EDDAD600F5CB24 /* NSString+TumblrKit.h in Headers */,
-				82F8B632122FC144005B5045 /* NSString+MIME.h in Headers */,
+				82B09F42123664CD0006D003 /* NSDictionary+TumblrKit.h in Headers */,
+				82B0A019123675EF0006D003 /* TKTumblrReadRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +265,7 @@
 			targets = (
 				8DC2EF4F0486A6940098B216 /* TumblrKit */,
 				827E46D511EB1BA000684466 /* Test */,
+				82B09E70123543700006D003 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -280,6 +281,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		82B09E6F123543700006D003 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#  Build the doxygen documentation for the project and load the docset into Xcode.\n\n#  Use the following to adjust the value of the $DOXYGEN_PATH User-Defined Setting:\n#    Binary install location: /Applications/Doxygen.app/Contents/Resources/doxygen\n#    Source build install location: /usr/local/bin/doxygen\n\n#  If the config file doesn't exist, run 'doxygen -g $SOURCE_ROOT/doxygen.config' to \n#   a get default file.\n\nif ! [ -f $SOURCE_ROOT/doxygen.config ] \nthen \n  echo doxygen config file does not exist\n  $DOXYGEN_PATH -g $SOURCE_ROOT/doxygen.config\nfi\n\n#  Append the proper input/output directories and docset info to the config file.\n#  This works even though values are assigned higher up in the file. Easier than sed.\n\ncp -a $SOURCE_ROOT/doxygen.config $TEMP_DIR/doxygen.config\n\necho \"INPUT = $SOURCE_ROOT\" >> $TEMP_DIR/doxygen.config\necho \"OUTPUT_DIRECTORY = $SOURCE_ROOT/DoxygenDocs.docset\" >> $TEMP_DIR/doxygen.config\necho \"GENERATE_DOCSET = YES\" >> $TEMP_DIR/doxygen.config\necho \"DOCSET_BUNDLE_ID = com.mycompany.DoxygenExample\" >> $TEMP_DIR/doxygen.config\n\n#  Run doxygen on the updated config file.\n#  Note: doxygen creates a Makefile that does most of the heavy lifting.\n\n$DOXYGEN_PATH $TEMP_DIR/doxygen.config\n\n#  make will invoke docsetutil. Take a look at the Makefile to see how this is done.\n\nmake -C $SOURCE_ROOT/DoxygenDocs.docset/html install\n\n#  Construct a temporary applescript file to tell Xcode to load a docset.\n\nrm -f $TEMP_DIR/loadDocSet.scpt\n\necho \"tell application \\\"Xcode\\\"\" >> $TEMP_DIR/loadDocSet.scpt\necho \"load documentation set with path \\\"/Users/$USER/Library/Developer/Shared/Documentation/DocSets/\\\"\" \n     >> $TEMP_DIR/loadDocSet.scpt\necho \"end tell\" >> $TEMP_DIR/loadDocSet.scpt\n\n#  Run the load-docset applescript command.\n\nosascript $TEMP_DIR/loadDocSet.scpt\n\nexit 0";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		827E46D311EB1BA000684466 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -294,12 +311,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				827E467911EB0D9100684466 /* TKPost.m in Sources */,
-				82A53CC811ED0D99006BA92A /* TKTumblrConnection.m in Sources */,
-				82A53D7111ED1CE7006BA92A /* TKTumblrReader.m in Sources */,
-				82A53CCC11ED0DB1006BA92A /* TKTumblrRequest.m in Sources */,
-				82A53CD011ED0DBE006BA92A /* TKTumblrResponse.m in Sources */,
 				826CD95F11EDDAD600F5CB24 /* NSString+TumblrKit.m in Sources */,
-				82F8B633122FC144005B5045 /* NSString+MIME.m in Sources */,
+				82B09EB0123643A70006D003 /* TKTumblr.m in Sources */,
+				82B09F43123664CD0006D003 /* NSDictionary+TumblrKit.m in Sources */,
+				82B0A01A123675EF0006D003 /* TKTumblrReadRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +366,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DOXYGEN_PATH = /Applications/Doxygen.app/Contents/Resources/doxygen;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
@@ -436,6 +452,29 @@
 			};
 			name = Release;
 		};
+		82B09E71123543700006D003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DOXYGEN_PATH = /Applications/Doxygen.app/Contents/Resources/doxygen;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Documentation;
+			};
+			name = Debug;
+		};
+		82B09E72123543700006D003 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DOXYGEN_PATH = /Applications/Doxygen.app/Contents/Resources/doxygen;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Documentation;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -462,6 +501,15 @@
 			buildConfigurations = (
 				827E46D811EB1BA100684466 /* Debug */,
 				827E46D911EB1BA100684466 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82B09E781235438A0006D003 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82B09E71123543700006D003 /* Debug */,
+				82B09E72123543700006D003 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

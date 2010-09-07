@@ -22,6 +22,14 @@
 
 typedef enum
 {
+    TKPostStateAll,
+    TKPostStateDraft,
+    TKPostStateQueue,
+    TKPostStateSubmission
+} TKPostState;
+
+typedef enum
+{
     TKPostTypeAll,
     TKPostTypeRegular,
     TKPostTypeLink,

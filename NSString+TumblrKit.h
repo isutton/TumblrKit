@@ -23,5 +23,6 @@
 @interface NSString (TumblrKit)
 
 - (NSString *)stringByAddingQueryPercentEscapesUsingEncoding:(NSStringEncoding)encoding;
++ (NSString *)MIMEBoundary;
 
 @end

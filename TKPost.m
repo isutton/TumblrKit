@@ -82,6 +82,7 @@ static NSString *TKPostFormatAsString[] =
         reblogKey = nil;
         date = nil;
         url = nil;
+        group = nil;
         format = TKPostFormatHTML;
     }
 
@@ -91,9 +92,6 @@ static NSString *TKPostFormatAsString[] =
 - (id)initWithAttributes:(NSDictionary *)attributeDict
 {
     if ((self = [self init]) != nil) {
-
-        // Deliberate use of "self." here, since we want to retain/copy as
-        // appropriate.
         self.postID = [attributeDict objectForKey:@"id"];
         self.url = [attributeDict objectForKey:@"url"];
         self.date = [attributeDict objectForKey:@"date"];

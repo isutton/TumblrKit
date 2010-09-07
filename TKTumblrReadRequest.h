@@ -15,34 +15,36 @@
 //  You should have received a copy of the GNU General Public License
 //  along with TumblrKit.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  TKTumblrResponse.h by Igor Sutton on 7/13/10.
+//  TKTumblrReadRequest.h by Igor Sutton on 9/7/10.
 //
 
 #import <Foundation/Foundation.h>
 #import "TKPost.h"
 
-typedef enum {
-    TKTumblrCreated = 201,
-    TKTumblrBadRequest = 400,
-    TKTumblrForbidden = 403
-} TKTumblrResponseReturnCode;
-
-@interface TKTumblrResponse : NSObject 
+@interface TKTumblrReadRequest : NSObject
 {
-    NSArray *posts;
-    NSNumber *postID;
-    TKTumblrResponseReturnCode returnCode;
+    NSNumber     *start;
+    NSNumber     *numOfPosts;
+    NSNumber     *postID;
+    NSString     *search;
+    NSString     *group;
+
+    TKPostType   type;
+    TKPostFilter filter;
+    TKPostState  state;
 }
 
-@property (retain) NSArray *posts;
+@property (copy) NSNumber *start;
+@property (copy) NSNumber *numOfPosts;
 @property (copy) NSNumber *postID;
-@property (assign) TKTumblrResponseReturnCode returnCode;
+@property (copy) NSString *search;
+@property (copy) NSString *group;
 
-+ (id)responseWithPosts:(NSArray *)somePosts;
-+ (id)responseWithPostID:(NSNumber *)postID;
-+ (id)responseWithReturnCode:(TKTumblrResponseReturnCode)theReturnCode;
-- (id)initWithPosts:(NSArray *)somePosts postID:(NSNumber *)thePostID returnCode:(TKTumblrResponseReturnCode)theReturnCode;
-- (id)initWithPosts:(NSArray *)somePosts postID:(NSNumber *)thePostID;
-- (NSString *)returnCodeAsString;
+@property (assign) TKPostType   type;
+@property (assign) TKPostFilter filter;
+@property (assign) TKPostState  state;
+
+- (id)initWithPostID:(NSNumber *)thePostID andDomain:(NSString *)theDomain;
+- (NSURL *)endpoint;
 
 @end

@@ -33,4 +33,17 @@
     return [result autorelease];
 }
 
++ (NSString *)MIMEBoundary
+{
+    static NSString *MIMEBoundary = nil;
+
+    if (!MIMEBoundary) {
+        MIMEBoundary = [[NSString alloc] initWithFormat:
+                        @"----_=_MIMEBoundary_%@_=_----",
+                        [[NSProcessInfo processInfo] globallyUniqueString]];
+    }
+
+    return MIMEBoundary;
+}
+
 @end
