@@ -143,9 +143,9 @@ static NSString *TKPostFormatAsString[] =
 - (NSDictionary *)attributesAsDictionary
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                 [self typeAsString], @"type",
-                                 [self group], @"group",
-                                 nil];
+    [self typeAsString], @"type",
+        [self group], @"group",
+        nil];
     return dict;
 }
 

@@ -22,7 +22,6 @@
 #include "NSString+TumblrKit.h"
 #include "NSDictionary+TumblrKit.h"
 
-
 @implementation TKTumblr
 
 @synthesize delegate, email, password, currentPost, currentElementName, requestedPost;
@@ -80,7 +79,6 @@
     [parser release];
 }
 
-
 - (BOOL)uploadPost:(TKPost *)thePost
 {
     return [self uploadPost:thePost withDomain:nil];
@@ -102,21 +100,21 @@
     [theURLRequest setHTTPMethod:@"POST"];
 
     [theURLRequest setValue:@"8bit"
-         forHTTPHeaderField:@"Content-Transfer-Encoding"];
+        forHTTPHeaderField:@"Content-Transfer-Encoding"];
 
     [theURLRequest setValue:[NSString stringWithFormat:@"%d", [postString length]]
-         forHTTPHeaderField:@"Content-Length"];
+        forHTTPHeaderField:@"Content-Length"];
 
     [theURLRequest setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", [NSString MIMEBoundary]]
-         forHTTPHeaderField:@"Content-Type"];
+        forHTTPHeaderField:@"Content-Type"];
 
     [theURLRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
 
     NSError *error = nil;
     NSHTTPURLResponse *theURLResponse = nil;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:theURLRequest
-                                                 returningResponse:&theURLResponse
-                                                             error:&error];
+        returningResponse:&theURLResponse
+        error:&error];
 
     // Release the request before we can enter some potentially danger
     // code path.
@@ -126,8 +124,8 @@
     if (([theURLResponse statusCode] != TKTumblrCreated)) {
         if (delegate && [delegate respondsToSelector:@selector(tumblrDidFailToUploadPost:withDomain:returnCode:)]) {
             [delegate tumblrDidFailToUploadPost:thePost
-                                     withDomain:theDomain
-                                     returnCode:[theURLResponse statusCode]];
+                withDomain:theDomain
+                returnCode:[theURLResponse statusCode]];
         }
         return NO;
     }
@@ -141,8 +139,8 @@
 
     if (delegate && [delegate respondsToSelector:@selector(tumblrDidUploadPost:withDomain:postID:)]) {
         [delegate tumblrDidUploadPost:thePost
-                           withDomain:theDomain
-                               postID:postID];
+            withDomain:theDomain
+            postID:postID];
     }
 
     return YES;
@@ -151,9 +149,9 @@
 - (NSDictionary *)attributesAsDictionary
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                 email, @"email",
-                                 password, @"password",
-                                 nil];
+    email, @"email",
+        password, @"password",
+        nil];
     return dict;
 }
 
@@ -186,12 +184,12 @@
 
     if (!elementToSelectorDict) {
         elementToSelectorDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @"appendToText:", @"text",
-                                 @"appendToCaption:",@"caption",
-                                 @"appendToPlayer:", @"player",
-                                 @"appendToBody:", @"body",
-                                 @"setURLWithString:", @"url",
-                                 nil];
+        @"appendToText:", @"text",
+            @"appendToCaption:",@"caption",
+            @"appendToPlayer:", @"player",
+            @"appendToBody:", @"body",
+            @"setURLWithString:", @"url",
+            nil];
     }
 
     NSString *key = [[currentElementName componentsSeparatedByString:@"-"] lastObject];

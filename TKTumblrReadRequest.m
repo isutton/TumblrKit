@@ -20,7 +20,6 @@
 
 #import "TKTumblrReadRequest.h"
 
-
 static NSString *TKPostTypeAsQueryString[] =
 {
     @"all",

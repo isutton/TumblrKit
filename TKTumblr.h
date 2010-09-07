@@ -21,21 +21,19 @@
 #import "TKPost.h"
 #import "TKTumblrReadRequest.h"
 
-
 #define Log(format, ...) NSLog(@"%s:%@", __PRETTY_FUNCTION__, [NSString stringWithFormat:format, ## __VA_ARGS__]);
 
-typedef enum {
+typedef enum
+{
     TKTumblrCreated = 201,
     TKTumblrBadRequest = 400,
     TKTumblrForbidden = 403
 } TKTumblrResponseReturnCode;
 
-
 @protocol TKTumblrDelegate
 
 @optional
 - (void)tumblrDidReceivePost:(TKPost *)thePost withDomain:(NSString *)theDomain;
-
 - (void)tumblrWillUploadPost:(TKPost *)thePost withDomain:(NSString *)theDomain;
 - (void)tumblrDidUploadPost:(TKPost *)thePost withDomain:(NSString *)theDomain postID:(NSNumber *)thePostID;
 - (void)tumblrDidFailToUploadPost:(TKPost *)thePost withDomain:(NSString *)theDomain returnCode:(TKTumblrResponseReturnCode)theReturnCode;
@@ -69,4 +67,3 @@ typedef enum {
 - (NSDictionary *)attributesAsDictionary;
 
 @end
-
