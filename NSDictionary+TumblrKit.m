@@ -21,7 +21,6 @@
 #import "NSDictionary+TumblrKit.h"
 #import "NSString+TumblrKit.h"
 
-
 @implementation NSDictionary (TumblrKit)
 
 - (NSString *)multipartMIMEString
@@ -30,14 +29,14 @@
     NSMutableString *result = [NSMutableString string];
     NSMutableDictionary *dict_ = [self mutableCopy];
 
-        // Hack: it seems the order we send the data in the HTTP post body matter
-        // in the Tumblr API. We'll remove the "type" object from the dictionary
-        // we copied and append its value as first thing, then we'll iterate the
-        // remaining keys. The impressive part is it worked directly when TumblrKit
-        // was compiled in 32 bit mode (where "type" was the first item to be encoded)
-        // but didn't work in 64 bit mode. It seems the architecture affects the
-        // sort of the keys, but we should not rely on that anyway (nor should the
-        // Tumblr API engineers :-)
+    // Hack: it seems the order we send the data in the HTTP post body matter
+    // in the Tumblr API. We'll remove the "type" object from the dictionary
+    // we copied and append its value as first thing, then we'll iterate the
+    // remaining keys. The impressive part is it worked directly when TumblrKit
+    // was compiled in 32 bit mode (where "type" was the first item to be encoded)
+    // but didn't work in 64 bit mode. It seems the architecture affects the
+    // sort of the keys, but we should not rely on that anyway (nor should the
+    // Tumblr API engineers :-)
 
     id value = [dict_ objectForKey:@"type"];
     [dict_ removeObjectForKey:@"type"];

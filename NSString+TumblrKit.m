@@ -39,8 +39,8 @@
 
     if (!MIMEBoundary) {
         MIMEBoundary = [[NSString alloc] initWithFormat:
-                        @"----_=_MIMEBoundary_%@_=_----",
-                        [[NSProcessInfo processInfo] globallyUniqueString]];
+        @"----_=_MIMEBoundary_%@_=_----",
+            [[NSProcessInfo processInfo] globallyUniqueString]];
     }
 
     return MIMEBoundary;

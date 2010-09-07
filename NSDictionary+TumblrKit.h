@@ -20,7 +20,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface NSDictionary (TumblrKit)
 
 - (NSString *)multipartMIMEString;
