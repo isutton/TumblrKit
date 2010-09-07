@@ -9,6 +9,7 @@ build/
 profile
 
 # Doxygen
+*.docset/
 html/
 latex/
 
