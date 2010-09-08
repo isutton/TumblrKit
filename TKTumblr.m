@@ -21,16 +21,18 @@
 #include "TKTumblr.h"
 #include "NSString+TumblrKit.h"
 #include "NSDictionary+TumblrKit.h"
+#include "TKTumblelog.h"
 
 @implementation TKTumblr
 
-@synthesize delegate, email, password, currentPost, currentElementName, requestedPost;
+@synthesize delegate, email, password, currentPost, currentElementName, requestedPost, currentTumblelog;
 
 - (id)initWithEmail:(NSString *)theEmail andPassword:(NSString *)thePassword
 {
     if ((self = [super init]) != nil) {
         self.email = theEmail;
         self.password = thePassword;
+        self.currentTumblelog = nil;
         self.currentPost = nil;
         self.currentElementName = nil;
         self.requestedPost = nil;
@@ -43,6 +45,7 @@
 {
     self.email = nil;
     self.password = nil;
+    self.currentTumblelog = nil;
     self.currentPost = nil;
     self.currentElementName = nil;
     self.requestedPost = nil;
@@ -155,6 +158,20 @@
     return dict;
 }
 
+- (NSArray *)tumblelogs
+{
+    NSString *theURLString = [NSString stringWithFormat:@"http://www.tumblr.com/api/authenticate?email=%@&password=%@",
+                              [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                              [password stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *theURL = [NSURL URLWithString:theURLString];
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:theURL];
+    [parser setDelegate:self];
+    [parser parse];
+    [parser release];
+
+    return nil;
+}
+
 #pragma mark NSXMLParserDelegate
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
@@ -163,6 +180,9 @@
 
     if ([elementName isEqualToString:@"post"]) {
         self.currentPost = [TKPost postWithAttributes:attributeDict];
+    }
+    else if ([elementName isEqualToString:@"tumblelog"]) {
+        self.currentTumblelog = [TKTumblelog tumblelogWithAttributes:attributeDict];
     }
 }
 
@@ -175,6 +195,14 @@
             }
         }
         self.currentPost = nil;
+    }
+    else if ([elementName isEqualToString:@"tumblelog"]) {
+        if (currentTumblelog != nil) {
+            if (delegate && [delegate respondsToSelector:@selector(tumblrDidReceiveTumblelog:)]) {
+                [delegate tumblrDidReceiveTumblelog:currentTumblelog];
+            }
+        }
+        self.currentTumblelog = nil;
     }
 }
 

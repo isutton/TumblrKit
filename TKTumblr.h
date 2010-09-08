@@ -20,6 +20,7 @@
 
 #import "TKPost.h"
 #import "TKTumblrReadRequest.h"
+#import "TKTumblelog.h"
 
 #define Log(format, ...) NSLog(@"%s:%@", __PRETTY_FUNCTION__, [NSString stringWithFormat:format, ## __VA_ARGS__]);
 
@@ -37,6 +38,7 @@ typedef enum
 - (void)tumblrWillUploadPost:(TKPost *)thePost withDomain:(NSString *)theDomain;
 - (void)tumblrDidUploadPost:(TKPost *)thePost withDomain:(NSString *)theDomain postID:(NSNumber *)thePostID;
 - (void)tumblrDidFailToUploadPost:(TKPost *)thePost withDomain:(NSString *)theDomain returnCode:(TKTumblrResponseReturnCode)theReturnCode;
+- (void)tumblrDidReceiveTumblelog:(TKTumblelog *)theTumblelog;
 
 @end
 
@@ -47,6 +49,7 @@ typedef enum
     NSString *email;
     NSString *password;
 
+    TKTumblelog *currentTumblelog;
     TKPost *currentPost;
     TKPost *requestedPost;
     NSString *currentElementName;
@@ -55,6 +58,7 @@ typedef enum
 @property (assign) id<TKTumblrDelegate,NSObject> delegate;
 @property (nonatomic,copy) NSString *email;
 @property (nonatomic,copy) NSString *password;
+@property (nonatomic,retain) TKTumblelog *currentTumblelog;
 @property (nonatomic,retain) TKPost *currentPost;
 @property (nonatomic,retain) TKPost *requestedPost;
 @property (nonatomic,copy) NSString *currentElementName;
@@ -65,5 +69,6 @@ typedef enum
 - (void)postsWithReadRequest:(TKTumblrReadRequest *)theReadRequest;
 - (TKPost *)postWithID:(NSNumber *)thePostID andDomain:(NSString *)theDomain;
 - (NSDictionary *)attributesAsDictionary;
+- (NSArray *)tumblelogs;
 
 @end
