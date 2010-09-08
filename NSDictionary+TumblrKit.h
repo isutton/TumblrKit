@@ -20,6 +20,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+/**
+ TumblrKit's additions to NSDictionary.
+ */
 @interface NSDictionary (TumblrKit)
 
 - (NSString *)multipartMIMEString;

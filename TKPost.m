@@ -20,6 +20,10 @@
 
 #import "TKPost.h"
 
+/**
+ Simplistic dictionary to be used statically. Used to map a Tumblr's post type
+ to internal TumblrKit class names.
+ */
 typedef struct
 {
     NSString *name;

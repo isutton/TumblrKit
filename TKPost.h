@@ -54,15 +54,33 @@ typedef enum
     TKPostFilterNone
 } TKPostFilter;
 
+/**
+ Base class for all TumblrKit post representation.
+ */
 @interface TKPost : NSObject
 {
+    /** This post's ID. */
     NSNumber *postID;
+
+    /** This post's URL. */
     NSString *url;
+
+    /** This post's slug. */
     NSString *slug;
+
+    /** This post's publish date. */
     NSDate *date;
+
+    /** This post's reblog key. */
     NSString *reblogKey;
+
+    /** This post's type. */
     TKPostType type;
+
+    /** This post's format. */
     TKPostFormat format;
+
+    /** This post's group (or domain). */
     NSString *group;
 }
 
@@ -75,25 +93,68 @@ typedef enum
 @property (nonatomic,assign) TKPostFormat format;
 @property (nonatomic,copy) NSString *group;
 
+/**
+ Creates a new TKPost subclass based on the attributeDict parameter.
+ */
 + (id)postWithAttributes:(NSDictionary *)attributeDict;
 
+/**
+ Initializes the base TKPost object with attributeDict contents.
+ */
 - (id)initWithAttributes:(NSDictionary *)attributeDict;
+
+/**
+ Returns this post's type as string.
+ */
 - (NSString *)typeAsString;
+
+/**
+ Returns a dictionary containing all the attributes of the current post.
+ */
 - (NSDictionary *)attributesAsDictionary;
 
 @end
 
+/**
+ Represents Tumblr's "regular" kind of post.
+ */
 @interface TKPostRegular : TKPost
 {
+    /** This post's title. */
     NSMutableString *title;
+
+    /** This post's body. */
     NSMutableString *body;
 }
 
+/**
+ Returns a copy of this post's title.
+ */
 - (NSString *)title;
+
+/**
+ Sets this post's title.
+ */
 - (void)setTitle:(NSString *)aTitle;
+
+/**
+ Returns a copy of this post's body.
+ */
 - (NSString *)body;
+
+/**
+ Sets this post's body.
+ */
 - (void)setBody:(NSString *)aBody;
+
+/**
+ Appends the given string to this post's title.
+ */
 - (void)appendToTitle:(NSString *)string;
+
+/**
+ Appends the given string to this post's body.
+ */
 - (void)appendToBody:(NSString *)string;
 
 @end
