@@ -94,10 +94,10 @@
         [postDict setObject:theDomain forKey:@"group"];
 
     [postDict addEntriesFromDictionary:[thePost attributesAsDictionary]];
-    
+
     NSString *postString = [postDict multipartMIMEString];
-    NSMutableURLRequest *theURLRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.tumblr.com/api/write"]];
-    
+    NSMutableURLRequest *theURLRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.tumblr.com/api/write"]];
+
     [theURLRequest setHTTPMethod:@"POST"];
     [theURLRequest setValue:@"8bit" forHTTPHeaderField:@"Content-Transfer-Encoding"];
     [theURLRequest setValue:[NSString stringWithFormat:@"%d", [postString length]] forHTTPHeaderField:@"Content-Length"];
@@ -149,7 +149,7 @@
 
 - (NSArray *)tumblelogs
 {
-    NSString *theURLString = [NSString stringWithFormat:@"http://www.tumblr.com/api/authenticate?email=%@&password=%@",
+    NSString *theURLString = [NSString stringWithFormat:@"https://www.tumblr.com/api/authenticate?email=%@&password=%@",
                               [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
                               [password stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSURL *theURL = [NSURL URLWithString:theURLString];
