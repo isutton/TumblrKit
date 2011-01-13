@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		821384C912DF309700547830 /* MIT-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 821384C812DF309700547830 /* MIT-LICENSE.txt */; };
 		821DE1CF1237D09F00B6A45D /* TKTumblelog.h in Headers */ = {isa = PBXBuildFile; fileRef = 821DE1CD1237D09300B6A45D /* TKTumblelog.h */; };
 		821DE1D01237D0A000B6A45D /* TKTumblelog.m in Sources */ = {isa = PBXBuildFile; fileRef = 821DE1CE1237D09300B6A45D /* TKTumblelog.m */; };
 		826CD95E11EDDAD600F5CB24 /* NSString+TumblrKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 826CD95C11EDDAD600F5CB24 /* NSString+TumblrKit.h */; };
@@ -71,6 +72,7 @@
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* TumblrKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TumblrKit_Prefix.pch; sourceTree = "<group>"; };
+		821384C812DF309700547830 /* MIT-LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MIT-LICENSE.txt"; sourceTree = "<group>"; };
 		821DE1CD1237D09300B6A45D /* TKTumblelog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTumblelog.h; sourceTree = "<group>"; };
 		821DE1CE1237D09300B6A45D /* TKTumblelog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTumblelog.m; sourceTree = "<group>"; };
 		826CD95C11EDDAD600F5CB24 /* NSString+TumblrKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TumblrKit.h"; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
 				82B0A044123678940006D003 /* README.md */,
+				821384C812DF309700547830 /* MIT-LICENSE.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -262,9 +265,19 @@
 /* Begin PBXProject section */
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = TumblrKit;
+			};
 			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "TumblrKit" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* TumblrKit */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
@@ -283,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
+				821384C912DF309700547830 /* MIT-LICENSE.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
