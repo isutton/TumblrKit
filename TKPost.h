@@ -194,12 +194,16 @@ typedef enum
 @interface TKPostPhoto : TKPost
 {
     NSMutableString *caption;
+    NSString *source;
+    NSImage *image;
     NSUInteger width;
     NSUInteger height;
 }
 
 @property (assign) NSUInteger width;
 @property (assign) NSUInteger height;
+@property (copy) NSString *source;
+@property (retain) NSImage *image;
 
 - (NSString *)caption;
 - (void)setCaption:(NSString *)aCaption;

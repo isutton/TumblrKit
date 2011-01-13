@@ -25,10 +25,10 @@
 
 @implementation NSDictionary (TumblrKit)
 
-- (NSString *)multipartMIMEString
+- (NSData *)multipartMIMEData
 {
     NSString *format = @"--%@\nContent-Disposition: form-data; name=\"%@\"\n\n%@\n";
-    NSMutableString *result = [NSMutableString string];
+    NSMutableData *result = [NSMutableData data];
     NSMutableDictionary *dict_ = [self mutableCopy];
 
     // Hack: it seems the order we send the data in the HTTP post body matter
@@ -42,13 +42,21 @@
 
     id value = [dict_ objectForKey:@"type"];
     [dict_ removeObjectForKey:@"type"];
-    [result appendFormat:format, [NSString MIMEBoundary], @"type", value];
+    [result appendData:[[NSString stringWithFormat:format, [NSString MIMEBoundary], @"type", value] dataUsingEncoding:NSUTF8StringEncoding]];
 
     for (NSString *key in dict_) {
-        [result appendFormat:format, [NSString MIMEBoundary], key, [dict_ objectForKey:key]];
+        if ([key isEqualToString:@"data"]) {
+            [result appendData:[[NSString stringWithFormat:@"--%@\nContent-Disposition: form-data; name=\"%@\"\n\n", [NSString MIMEBoundary], key] dataUsingEncoding:NSUTF8StringEncoding]];
+            [result appendData:[dict_ objectForKey:key]];
+            [result appendData:[@"\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        }
+        else {
+            [result appendData:[[NSString stringWithFormat:format, [NSString MIMEBoundary], key, [dict_ objectForKey:key]] dataUsingEncoding:NSUTF8StringEncoding]];
+        }
     }
 
-    [result appendFormat:@"\n--%@--\n", [NSString MIMEBoundary]];
+    [result appendData:[[NSString stringWithFormat:@"\n--%@--\n", [NSString MIMEBoundary]] dataUsingEncoding:NSUTF8StringEncoding]];
+
     return result;
 }
 

@@ -27,6 +27,6 @@
  */
 @interface NSDictionary (TumblrKit)
 
-- (NSString *)multipartMIMEString;
+- (NSData *)multipartMIMEData;
 
 @end

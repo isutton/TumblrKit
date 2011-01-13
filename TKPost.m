@@ -413,13 +413,15 @@ static NSString *TKPostFormatAsString[] =
 
 @implementation TKPostPhoto
 
-@synthesize width, height;
+@synthesize width, height, source, image;
 
 - (id)init
 {
     if ((self = [super init]) != nil) {
         type = TKPostTypePhoto;
         caption = [[NSMutableString alloc] init];
+        image = nil;
+        source = nil;
         width = 0;
         height = 0;
     }
@@ -439,7 +441,9 @@ static NSString *TKPostFormatAsString[] =
 
 - (void)dealloc
 {
+    [source release];
     [caption release];
+    [image release];
     [super dealloc];
 }
 
@@ -464,6 +468,20 @@ static NSString *TKPostFormatAsString[] =
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@, Photo Caption: %@, Photo Width: %i, Photo Height: %i", [super description], self.caption, self.width, self.height];
+}
+
+- (NSDictionary *)attributesAsDictionary
+{
+    NSMutableDictionary *dict = (NSMutableDictionary *)[super attributesAsDictionary];
+    if (source != nil)
+        [dict setObject:source forKey:@"source"];
+    if (image != nil && source == nil) {
+        NSBitmapImageRep *bitmap = [[image representations] objectAtIndex:0];
+        [dict setObject:[bitmap representationUsingType:NSJPEGFileType properties:nil] forKey:@"data"];
+    }
+    [dict setObject:caption forKey:@"caption"];
+
+    return dict;
 }
 
 @end

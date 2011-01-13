@@ -97,14 +97,19 @@
 
     [postDict addEntriesFromDictionary:[thePost attributesAsDictionary]];
 
-    NSString *postString = [postDict multipartMIMEString];
+    NSData *postBody = [postDict multipartMIMEData];
     NSMutableURLRequest *theURLRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.tumblr.com/api/write"]];
 
     [theURLRequest setHTTPMethod:@"POST"];
     [theURLRequest setValue:@"8bit" forHTTPHeaderField:@"Content-Transfer-Encoding"];
-    [theURLRequest setValue:[NSString stringWithFormat:@"%d", [postString length]] forHTTPHeaderField:@"Content-Length"];
+    [theURLRequest setValue:[NSString stringWithFormat:@"%d", [postBody length]] forHTTPHeaderField:@"Content-Length"];
     [theURLRequest setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", [NSString MIMEBoundary]] forHTTPHeaderField:@"Content-Type"];
-    [theURLRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    [theURLRequest setHTTPBody:postBody];
+
+
+    if (delegate && [delegate respondsToSelector:@selector(tumblrWillUploadPost:withDomain:)]) {
+        [delegate tumblrWillUploadPost:thePost withDomain:theDomain];
+    }
 
     NSError *error = nil;
     NSHTTPURLResponse *theURLResponse = nil;
@@ -112,7 +117,7 @@
                                                  returningResponse:&theURLResponse
                                                              error:&error];
 
-    // Release the request before we can enter some potentially danger
+    // Release the request before we can enter some potentially dangerous
     // code path.
     [theURLRequest release];
 
