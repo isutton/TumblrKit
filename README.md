@@ -6,7 +6,7 @@ TumblrKit is a light-weight wrapper around Tumblr's API in Objective-C.
 Currently you can:
 
 * Fetch posts from Tumblr (regular, conversation, quote and link)
-* Upload posts to Tumblr (regular, conversation, quote and link)
+* Upload posts to Tumblr (regular, conversation, quote, link and photo)
 
 Usage
 -----
@@ -51,3 +51,7 @@ To upload a TKPost:
     // Tumblelog.
     [tumblr uploadPost:thePost];
 
+To Do
+-----
+
+* Currently network connections are synchronous. Need to add support for asynchronous connections, and respective delegate methods.
