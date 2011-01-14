@@ -27,7 +27,7 @@
 
 - (NSData *)multipartMIMEData
 {
-    NSString *format = @"--%@\nContent-Disposition: form-data; name=\"%@\"\n\n%@\n";
+    NSString *format = @"--%@\r\nContent-Disposition: form-data; name=\"%@\"\r\n\r\n%@\r\n";
     NSMutableData *result = [NSMutableData data];
     NSMutableDictionary *dict_ = [self mutableCopy];
 
@@ -46,7 +46,7 @@
 
     for (NSString *key in dict_) {
         if ([key isEqualToString:@"data"]) {
-            [result appendData:[[NSString stringWithFormat:@"--%@\nContent-Disposition: form-data; name=\"%@\"\n\n", [NSString MIMEBoundary], key] dataUsingEncoding:NSUTF8StringEncoding]];
+            [result appendData:[[NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"\r\n\r\n", [NSString MIMEBoundary], key] dataUsingEncoding:NSUTF8StringEncoding]];
             [result appendData:[dict_ objectForKey:key]];
             [result appendData:[@"\n" dataUsingEncoding:NSUTF8StringEncoding]];
         }
@@ -55,7 +55,7 @@
         }
     }
 
-    [result appendData:[[NSString stringWithFormat:@"\n--%@--\n", [NSString MIMEBoundary]] dataUsingEncoding:NSUTF8StringEncoding]];
+    [result appendData:[[NSString stringWithFormat:@"--%@--\r\n", [NSString MIMEBoundary]] dataUsingEncoding:NSUTF8StringEncoding]];
 
     return result;
 }
