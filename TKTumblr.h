@@ -41,7 +41,9 @@ typedef enum
 - (void)tumblrDidUploadPost:(TKPost *)thePost withDomain:(NSString *)theDomain postID:(NSNumber *)thePostID;
 - (void)tumblrDidFailToUploadPost:(TKPost *)thePost withDomain:(NSString *)theDomain returnCode:(TKTumblrResponseReturnCode)theReturnCode;
 - (void)tumblrDidReceiveTumblelog:(TKTumblelog *)theTumblelog;
-
+- (void)tumblrDidReturnTumblelogs:(NSArray *)tumblelogs;
+- (void)tumblrUserAuthenticated;
+- (void)tumblrUserNotAuthenticated;
 @end
 
 @interface TKTumblr : NSObject <NSXMLParserDelegate,TKTumblrDelegate>
@@ -51,19 +53,26 @@ typedef enum
     NSString *email;
     NSString *password;
 
+    NSMutableArray *usersTumblelogs;
     TKTumblelog *currentTumblelog;
     TKPost *currentPost;
     TKPost *requestedPost;
     NSString *currentElementName;
+    
+    BOOL authenticationRequestInProgress;
+    BOOL userAuthenticated;
 }
 
 @property (assign) id<TKTumblrDelegate,NSObject> delegate;
 @property (nonatomic,copy) NSString *email;
 @property (nonatomic,copy) NSString *password;
+@property (nonatomic, retain) NSMutableArray *usersTumblelogs;
 @property (nonatomic,retain) TKTumblelog *currentTumblelog;
 @property (nonatomic,retain) TKPost *currentPost;
 @property (nonatomic,retain) TKPost *requestedPost;
 @property (nonatomic,copy) NSString *currentElementName;
+@property (assign) BOOL userAuthenticated;
+@property (assign) BOOL authenticationRequestInProgress;
 
 - (id)initWithEmail:(NSString *)theEmail andPassword:(NSString *)thePassword;
 - (BOOL)uploadPost:(TKPost *)thePost;
@@ -71,6 +80,7 @@ typedef enum
 - (void)postsWithReadRequest:(TKTumblrReadRequest *)theReadRequest;
 - (TKPost *)postWithID:(NSNumber *)thePostID andDomain:(NSString *)theDomain;
 - (NSDictionary *)attributesAsDictionary;
-- (NSArray *)tumblelogs;
+- (void)tumblelogs;
+- (void)authenticate;
 
 @end

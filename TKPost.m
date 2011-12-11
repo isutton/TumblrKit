@@ -138,7 +138,7 @@ static NSString *TKPostFormatAsString[] =
         }
     }
 
-    return [(TKPost *)[postClass alloc] initWithAttributes:attributeDict];
+    return [[(TKPost *)[postClass alloc] initWithAttributes:attributeDict] autorelease];
 }
 
 - (NSString *)typeAsString
@@ -179,7 +179,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)title
 {
-    return [title copy];
+    return [[title copy] autorelease];
 }
 
 - (void)setTitle:(NSString *)aTitle
@@ -192,7 +192,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)body
 {
-    return [body copy];
+    return [[body copy] autorelease];
 }
 
 - (void)setBody:(NSString *)aBody
@@ -252,7 +252,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)text
 {
-    return [text copy];
+    return [[text copy] autorelease];
 }
 
 - (void)setText:(NSString *)aText
@@ -311,7 +311,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)text
 {
-    return [text copy];
+    return [[text copy] autorelease];
 }
 
 - (void)setText:(NSString *)aText
@@ -324,7 +324,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)source
 {
-    return [source copy];
+    return [[source copy] autorelease];
 }
 
 - (void)setSource:(NSString *)aSource
@@ -380,7 +380,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)text
 {
-    return [text copy];
+    return [[text copy] autorelease];
 }
 
 - (void)setText:(NSString *)aText
@@ -449,7 +449,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)caption
 {
-    return [caption copy];
+    return [[caption copy] autorelease];
 }
 
 - (void)setCaption:(NSString *)aCaption
@@ -476,8 +476,13 @@ static NSString *TKPostFormatAsString[] =
     if (source != nil)
         [dict setObject:source forKey:@"source"];
     if (image != nil && source == nil) {
-        NSBitmapImageRep *bitmap = [[image representations] objectAtIndex:0];
-        [dict setObject:[bitmap representationUsingType:NSJPEGFileType properties:nil] forKey:@"data"];
+        #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR) 
+            NSData *data = UIImageJPEGRepresentation(image, 1.0);
+            [dict setObject:data forKey:@"data"];
+        #else
+            NSBitmapImageRep *bitmap = [[image representations] objectAtIndex:0];
+            [dict setObject:[bitmap representationUsingType:NSJPEGFileType properties:nil] forKey:@"data"];
+        #endif
     }
     [dict setObject:caption forKey:@"caption"];
 
@@ -510,7 +515,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)caption
 {
-    return [caption copy];
+    return [[caption copy] autorelease];
 }
 
 - (void)setCaption:(NSString *)aCaption
@@ -523,7 +528,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)source
 {
-    return [source copy];
+    return [[source copy] autorelease];
 }
 
 - (void)setSource:(NSString *)aSource
@@ -536,7 +541,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)player
 {
-    return [player copy];
+    return [[player copy] autorelease];
 }
 
 - (void)setPlayer:(NSString *)aPlayer
@@ -591,7 +596,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)caption
 {
-    return [caption copy];
+    return [[caption copy] autorelease];
 }
 
 - (void)setCaption:(NSString *)aCaption
@@ -604,7 +609,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)player
 {
-    return [player copy];
+    return [[player copy] autorelease];
 }
 
 - (void)setPlayer:(NSString *)aPlayer

@@ -56,6 +56,7 @@
     }
 
     [result appendData:[[NSString stringWithFormat:@"--%@--\r\n", [NSString MIMEBoundary]] dataUsingEncoding:NSUTF8StringEncoding]];
+    [dict_ release];
 
     return result;
 }
