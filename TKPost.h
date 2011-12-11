@@ -195,7 +195,13 @@ typedef enum
 {
     NSMutableString *caption;
     NSString *source;
+
+    #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR) 
+    UIImage *image;
+    #else
     NSImage *image;
+    #endif
+    
     NSUInteger width;
     NSUInteger height;
 }
@@ -203,7 +209,12 @@ typedef enum
 @property (assign) NSUInteger width;
 @property (assign) NSUInteger height;
 @property (copy) NSString *source;
+
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
+@property (retain) UIImage *image;
+#else
 @property (retain) NSImage *image;
+#endif
 
 - (NSString *)caption;
 - (void)setCaption:(NSString *)aCaption;

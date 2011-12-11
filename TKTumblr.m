@@ -27,7 +27,7 @@
 
 @implementation TKTumblr
 
-@synthesize delegate, email, password, currentPost, currentElementName, requestedPost, currentTumblelog;
+@synthesize delegate, email, password, currentPost, currentElementName, requestedPost, currentTumblelog, usersTumblelogs, authenticationRequestInProgress, userAuthenticated;
 
 - (id)initWithEmail:(NSString *)theEmail andPassword:(NSString *)thePassword
 {
@@ -38,6 +38,7 @@
         self.currentPost = nil;
         self.currentElementName = nil;
         self.requestedPost = nil;
+        self.usersTumblelogs = [[[NSMutableArray alloc] init] autorelease];
     }
     return self;
 }
@@ -50,6 +51,7 @@
     self.currentPost = nil;
     self.currentElementName = nil;
     self.requestedPost = nil;
+    self.usersTumblelogs = nil;
     [super dealloc];
 }
 
@@ -154,7 +156,7 @@
     return dict;
 }
 
-- (NSArray *)tumblelogs
+- (void)tumblelogs
 {
     NSString *theURLString = [NSString stringWithFormat:@"https://www.tumblr.com/api/authenticate?email=%@&password=%@",
                               [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
@@ -164,8 +166,18 @@
     [parser setDelegate:self];
     [parser parse];
     [parser release];
+}
 
-    return nil;
+- (void)authenticate {
+    NSString *theURLString = [NSString stringWithFormat:@"https://www.tumblr.com/api/authenticate?email=%@&password=%@",
+                              [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                              [password stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *theURL = [NSURL URLWithString:theURLString];
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:theURL];
+    self.authenticationRequestInProgress = YES;
+    [parser setDelegate:self];
+    [parser parse];
+    [parser release];
 }
 
 #pragma mark NSXMLParserDelegate
@@ -173,6 +185,12 @@
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     self.currentElementName = elementName;
+    
+    if ([elementName isEqualToString:@"user"] && authenticationRequestInProgress) {
+        if (authenticationRequestInProgress) { 
+            self.userAuthenticated = YES;
+        }
+    }
 
     if ([elementName isEqualToString:@"post"]) {
         self.currentPost = [TKPost postWithAttributes:attributeDict];
@@ -184,6 +202,12 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
+    if ([elementName isEqualToString:@"user"] && authenticationRequestInProgress && userAuthenticated) {
+        if (delegate && [delegate respondsToSelector:@selector(tumblrUserAuthenticated)]) {
+            [delegate tumblrUserAuthenticated];
+        }
+    }
+    
     if ([elementName isEqualToString:@"post"]) {
         if (currentPost != nil) {
             if (delegate && [delegate respondsToSelector:@selector(tumblrDidReceivePost:withDomain:)]) {
@@ -197,6 +221,7 @@
             if (delegate && [delegate respondsToSelector:@selector(tumblrDidReceiveTumblelog:)]) {
                 [delegate tumblrDidReceiveTumblelog:currentTumblelog];
             }
+            [self.usersTumblelogs addObject:currentTumblelog];
         }
         self.currentTumblelog = nil;
     }
@@ -221,6 +246,33 @@
     if (selector) {
         [currentPost performSelector:selector withObject:string];
     }
+}
+
+- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
+    if (authenticationRequestInProgress) { 
+        self.userAuthenticated = NO;
+        if (delegate && [delegate respondsToSelector:@selector(tumblrUserNotAuthenticated)]) {
+            [delegate tumblrUserNotAuthenticated];
+        }
+    }
+}
+
+- (void)parserDidStartDocument:(NSXMLParser *)parser {
+    [self.usersTumblelogs removeAllObjects];
+    self.userAuthenticated = NO;
+}
+
+- (void)parserDidEndDocument:(NSXMLParser *)parser {    
+    if ([self.usersTumblelogs count]>0) {
+         if (delegate && [delegate respondsToSelector:@selector(tumblrDidReturnTumblelogs:)]) {
+             [delegate tumblrDidReturnTumblelogs:self.usersTumblelogs];
+             [self.usersTumblelogs removeAllObjects];
+         }
+    }
+    
+    if (authenticationRequestInProgress) {
+        authenticationRequestInProgress = NO;
+    }    
 }
 
 #pragma mark TKTumblrDelegate
