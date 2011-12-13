@@ -179,7 +179,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)title
 {
-    return [title copy];
+    return [[title copy] autorelease];
 }
 
 - (void)setTitle:(NSString *)aTitle
@@ -252,7 +252,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)text
 {
-    return [text copy];
+    return [[text copy] autorelease];
 }
 
 - (void)setText:(NSString *)aText
@@ -311,7 +311,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)text
 {
-    return [text copy];
+    return [[text copy] autorelease];
 }
 
 - (void)setText:(NSString *)aText
@@ -324,7 +324,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)source
 {
-    return [source copy];
+    return [[source copy] autorelease];
 }
 
 - (void)setSource:(NSString *)aSource
@@ -380,7 +380,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)text
 {
-    return [text copy];
+    return [[text copy] autorelease];
 }
 
 - (void)setText:(NSString *)aText
@@ -449,7 +449,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)caption
 {
-    return [caption copy];
+    return [[caption copy] autorelease];
 }
 
 - (void)setCaption:(NSString *)aCaption
@@ -514,7 +514,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)caption
 {
-    return [caption copy];
+    return [[caption copy] autorelease];
 }
 
 - (void)setCaption:(NSString *)aCaption
@@ -527,7 +527,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)source
 {
-    return [source copy];
+    return [[source copy] autorelease];
 }
 
 - (void)setSource:(NSString *)aSource
@@ -540,7 +540,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)player
 {
-    return [player copy];
+    return [[player copy] autorelease];
 }
 
 - (void)setPlayer:(NSString *)aPlayer
@@ -595,7 +595,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)caption
 {
-    return [caption copy];
+    return [[caption copy] autorelease];
 }
 
 - (void)setCaption:(NSString *)aCaption
@@ -608,7 +608,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSString *)player
 {
-    return [player copy];
+    return [[player copy] autorelease];
 }
 
 - (void)setPlayer:(NSString *)aPlayer
