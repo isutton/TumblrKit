@@ -20,7 +20,11 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#if TARGET_OS_IPHONE
+typedef UIImage TKImage;
+#elif TARGET_OS_MAC
+typedef NSImage TKImage;
+#endif
 
 typedef enum
 {
@@ -195,7 +199,7 @@ typedef enum
 {
     NSMutableString *caption;
     NSString *source;
-    NSImage *image;
+    TKImage *image;
     NSUInteger width;
     NSUInteger height;
 }
@@ -203,7 +207,7 @@ typedef enum
 @property (assign) NSUInteger width;
 @property (assign) NSUInteger height;
 @property (copy) NSString *source;
-@property (retain) NSImage *image;
+@property (retain) TKImage *image;
 
 - (NSString *)caption;
 - (void)setCaption:(NSString *)aCaption;

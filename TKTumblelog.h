@@ -20,8 +20,6 @@
 //  THE SOFTWARE.
 //
 
-#import <Cocoa/Cocoa.h>
-
 typedef enum
 {
     TKTumblelogTypePublic,

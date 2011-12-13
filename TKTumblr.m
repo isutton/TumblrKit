@@ -126,7 +126,7 @@
         if (delegate && [delegate respondsToSelector:@selector(tumblrDidFailToUploadPost:withDomain:returnCode:)]) {
             [delegate tumblrDidFailToUploadPost:thePost
                                      withDomain:theDomain
-                                     returnCode:[theURLResponse statusCode]];
+                                     returnCode:(TKTumblrResponseReturnCode)[theURLResponse statusCode]];
         }
         return NO;
     }

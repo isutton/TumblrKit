@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'TumblrKit for iOS' target in the 'TumblrKit for iOS' project
+//
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif

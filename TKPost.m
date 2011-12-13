@@ -476,8 +476,12 @@ static NSString *TKPostFormatAsString[] =
     if (source != nil)
         [dict setObject:source forKey:@"source"];
     if (image != nil && source == nil) {
+#ifdef TARGET_OS_IPHONE
+        [dict setObject:UIImageJPEGRepresentation(image, 1.0) forKey:@"data"];
+#else
         NSBitmapImageRep *bitmap = [[image representations] objectAtIndex:0];
         [dict setObject:[bitmap representationUsingType:NSJPEGFileType properties:nil] forKey:@"data"];
+#endif
     }
     [dict setObject:caption forKey:@"caption"];
 
