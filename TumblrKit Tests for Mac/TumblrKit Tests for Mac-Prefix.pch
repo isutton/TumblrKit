@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'TumblrKit Tests for Mac' target in the 'TumblrKit Tests for Mac' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

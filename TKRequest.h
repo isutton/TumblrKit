@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2010, 2011 TumblrKit
+//  Copyright (c) 2011 TumblrKit
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -20,31 +20,36 @@
 //  THE SOFTWARE.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "TKTumblr.h"
-#import "TKTumblrConnection.h"
-#import "TKTumblrRequest.h"
-#import "TKTumblrResponse.h"
+@class TKRequest;
 
+@protocol TKRequestable <NSObject>
 
-int main(int argc, char **argv) {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+@optional
+- (void)connectionDidFinishLoadingData:(NSData *)data;
+- (void)connectionDidFailWithError:(NSError *)error;
 
-    TKTumblrRequest *req = [[TKTumblrRequest alloc] initWithURL:[NSURL URLWithString:@"http://igorsutton.com"]];
-    req.postFilter = TKPostFilterText;
-    req.startIndex = 2;
-    req.numberOfPosts = 1;
-    req.postType = TKPostTypeLink;
+@optional
+- (NSData *)HTTPBody;
 
-    TKTumblrConnection *conn = [[TKTumblrConnection alloc] init];
+@required
+- (NSURL *)URL;
 
-    TKTumblrResponse *res = nil;
-    NSError *error = nil;
+@end
 
-    [conn sendSynchronousRequest:req returningResponse:&res error:&error];
-
-    Log(@"%@", res.posts);
-    Log(@"%@", [req URLForWrite]);
-
-    [pool drain];
+#if TARGET_OS_MAC
+@interface TKRequest : NSObject <TKRequestable,NSURLConnectionDelegate>
+#elif TARGET_OS_IPHONE
+@interface TKRequest : NSObject <TKRequestable,NSURLConnectionDelegate,NSURLConnectionDataDelegate>
+#endif
+{
+    @protected
+    NSURLConnection *_connection;
+    NSMutableData *_receivedData;
 }
+
+#pragma mark - API
+
+- (void)start;
+- (void)cancel;
+
+@end
