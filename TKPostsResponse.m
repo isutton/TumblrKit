@@ -36,6 +36,11 @@
 
 #pragma mark - API
 
++ (id)responseWithPosts:(NSArray *)posts;
+{
+    return [[[self alloc] initWithPosts:posts] autorelease];
+}
+
 - (id)initWithPosts:(NSArray *)posts;
 {
     if (!(self = [self init]))

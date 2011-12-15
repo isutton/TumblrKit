@@ -26,6 +26,7 @@
 
 #pragma mark - API
 
++ (id)responseWithPosts:(NSArray *)posts;
 - (id)initWithPosts:(NSArray *)posts;
 
 @end

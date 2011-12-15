@@ -80,8 +80,7 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser;
 {
     [_currentPost release]; _currentPost = nil;
-    TKPostsResponse *response = [[[TKPostsResponse alloc] initWithPosts:_receivedPosts] autorelease];
-    [self.delegate postsRequest:self didReceiveResponse:response];
+    [self.delegate postsRequest:self didReceiveResponse:[TKPostsResponse responseWithPosts:_receivedPosts]];
 }
 
 #pragma mark - TKRequest
