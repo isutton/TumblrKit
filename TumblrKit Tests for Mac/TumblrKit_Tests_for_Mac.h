@@ -8,8 +8,9 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "TKPostsRequest.h"
+#import "TKTumblelogsRequest.h"
 
-@interface TumblrKit_Tests_for_Mac : SenTestCase <TKPostsRequestDelegate>
+@interface TumblrKit_Tests_for_Mac : SenTestCase <TKPostsRequestDelegate,TKTumblelogsRequestDelegate>
 {
     BOOL _testIsDone;
 }

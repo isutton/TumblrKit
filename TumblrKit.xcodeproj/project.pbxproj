@@ -54,6 +54,14 @@
 		82F7992C14992ED100920028 /* TKPostsResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F7992914992ED100920028 /* TKPostsResponse.h */; };
 		82F7992D14992ED100920028 /* TKPostsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F7992A14992ED100920028 /* TKPostsResponse.m */; };
 		82F7992E14992ED100920028 /* TKPostsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F7992A14992ED100920028 /* TKPostsResponse.m */; };
+		82F79931149A167B00920028 /* TKTumblelogsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F7992F149A167A00920028 /* TKTumblelogsRequest.h */; };
+		82F79932149A167B00920028 /* TKTumblelogsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F7992F149A167A00920028 /* TKTumblelogsRequest.h */; };
+		82F79933149A167B00920028 /* TKTumblelogsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F79930149A167A00920028 /* TKTumblelogsRequest.m */; };
+		82F79934149A167B00920028 /* TKTumblelogsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F79930149A167A00920028 /* TKTumblelogsRequest.m */; };
+		82F79937149A19F500920028 /* TKTumblelogsResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F79935149A19F500920028 /* TKTumblelogsResponse.h */; };
+		82F79938149A19F500920028 /* TKTumblelogsResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F79935149A19F500920028 /* TKTumblelogsResponse.h */; };
+		82F79939149A19F500920028 /* TKTumblelogsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F79936149A19F500920028 /* TKTumblelogsResponse.m */; };
+		82F7993A149A19F500920028 /* TKTumblelogsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F79936149A19F500920028 /* TKTumblelogsResponse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +120,10 @@
 		82F79922149924E900920028 /* TumblrKit Tests for Mac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TumblrKit Tests for Mac-Prefix.pch"; sourceTree = "<group>"; };
 		82F7992914992ED100920028 /* TKPostsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKPostsResponse.h; sourceTree = "<group>"; };
 		82F7992A14992ED100920028 /* TKPostsResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPostsResponse.m; sourceTree = "<group>"; };
+		82F7992F149A167A00920028 /* TKTumblelogsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTumblelogsRequest.h; sourceTree = "<group>"; };
+		82F79930149A167A00920028 /* TKTumblelogsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTumblelogsRequest.m; sourceTree = "<group>"; };
+		82F79935149A19F500920028 /* TKTumblelogsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTumblelogsResponse.h; sourceTree = "<group>"; };
+		82F79936149A19F500920028 /* TKTumblelogsResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTumblelogsResponse.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -210,6 +222,10 @@
 				82F799071497F27300920028 /* TKPostsRequest.m */,
 				82F7992914992ED100920028 /* TKPostsResponse.h */,
 				82F7992A14992ED100920028 /* TKPostsResponse.m */,
+				82F7992F149A167A00920028 /* TKTumblelogsRequest.h */,
+				82F79930149A167A00920028 /* TKTumblelogsRequest.m */,
+				82F79935149A19F500920028 /* TKTumblelogsResponse.h */,
+				82F79936149A19F500920028 /* TKTumblelogsResponse.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -336,6 +352,8 @@
 			files = (
 				82F799081497F27300920028 /* TKPostsRequest.h in Headers */,
 				82F7992B14992ED100920028 /* TKPostsResponse.h in Headers */,
+				82F79931149A167B00920028 /* TKTumblelogsRequest.h in Headers */,
+				82F79937149A19F500920028 /* TKTumblelogsResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +363,8 @@
 			files = (
 				82F799091497F27300920028 /* TKPostsRequest.h in Headers */,
 				82F7992C14992ED100920028 /* TKPostsResponse.h in Headers */,
+				82F79932149A167B00920028 /* TKTumblelogsRequest.h in Headers */,
+				82F79938149A19F500920028 /* TKTumblelogsResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,6 +521,8 @@
 				827903311497E53E0018F19E /* TumblrKit_for_iOS.m in Sources */,
 				82F7990A1497F27300920028 /* TKPostsRequest.m in Sources */,
 				82F7992D14992ED100920028 /* TKPostsResponse.m in Sources */,
+				82F79933149A167B00920028 /* TKTumblelogsRequest.m in Sources */,
+				82F79939149A19F500920028 /* TKTumblelogsResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +540,8 @@
 				827903591497E5860018F19E /* TumblrKit_for_Mac.m in Sources */,
 				82F7990B1497F27300920028 /* TKPostsRequest.m in Sources */,
 				82F7992E14992ED100920028 /* TKPostsResponse.m in Sources */,
+				82F79934149A167B00920028 /* TKTumblelogsRequest.m in Sources */,
+				82F7993A149A19F500920028 /* TKTumblelogsResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,8 @@
 #import "TumblrKit_Tests_for_Mac.h"
 #import "TKPost.h"
 #import "TKPostsResponse.h"
+#import "TKTumblelog.h"
+#import "TKTumblelogsResponse.h"
 
 @implementation TumblrKit_Tests_for_Mac
 
@@ -85,6 +87,20 @@
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
 }
 
+- (void)testTumblelogsRequest001;
+{
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             @"email", TKTumblelogsRequestEmailKey,
+                             @"password", TKTumblelogsRequestPasswordKey,
+                             nil];
+    
+    TKTumblelogsRequest *request = [[[TKTumblelogsRequest alloc] initWithOptions:options delegate:self] autorelease];
+    [request start];
+    
+    while (!_testIsDone)
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
+}
+
 #pragma mark - TKPostsRequestDelegate
 
 - (void)postsRequest:(TKPostsRequest *)request didReceiveResponse:(TKPostsResponse *)response;
@@ -103,6 +119,22 @@
 }
 
 - (void)postsRequest:(TKPostsRequest *)request didFailWithError:(NSError *)error;
+{
+    _testIsDone = YES;
+    
+    STFail(@"%@", error);
+}
+
+#pragma mark - TKTumblelogsRequestDelegate
+
+- (void)tumblelogsRequest:(TKTumblelogsRequest *)request didReceiveResponse:(TKTumblelogsResponse *)response;
+{
+    _testIsDone = YES;
+    
+    NSLog(@"Tumblelogs: %lu", [response.tumblelogs count]);
+}
+
+- (void)tumblelogsRequest:(TKTumblelogsRequest *)request didFailWithError:(NSError *)error;
 {
     _testIsDone = YES;
     
