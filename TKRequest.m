@@ -56,7 +56,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
 {
-    NSLog(@"%@", response);
+
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
@@ -66,7 +66,8 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 {
-    [self connectionDidFinishLoadingData:_receivedData];    
+    [self connectionDidFinishLoadingData:_receivedData];
+    [_receivedData release]; _receivedData = nil;
 }
 
 #pragma mark - API
