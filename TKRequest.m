@@ -32,9 +32,9 @@
 {
     if (!(self = [super init]))
         return nil;
-    
+
     _receivedData = [[NSMutableData alloc] init];
-    
+
     return self;
 }
 
@@ -66,7 +66,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 {
-    [self connectionDidFinishLoadingData:_receivedData];    
+    [self connectionDidFinishLoadingData:_receivedData];
 }
 
 #pragma mark - API
@@ -75,15 +75,15 @@
 {
     NSAssert(!_connection, @"start can't be called twice without being cancelled.");
     NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[self URL]];
-    
+
     if ([self respondsToSelector:@selector(HTTPBody)]) {
         theRequest.HTTPMethod = @"POST";
         theRequest.HTTPBody = self.HTTPBody;
-    } 
+    }
     else {
         theRequest.HTTPMethod = @"GET";
     }
-    
+
     _connection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
 }
 

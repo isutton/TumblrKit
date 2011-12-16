@@ -40,9 +40,9 @@
 {
     if (!(self = [self init]))
         return nil;
-    
+
     _posts = [posts retain];
-    
+
     return self;
 }
 

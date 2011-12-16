@@ -43,7 +43,7 @@
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict;
 {
     _currentElementName = elementName;
-    
+
     if ([elementName isEqualToString:@"post"])
         _currentPost = [[TKPost postWithAttributes:attributeDict] retain];
 }
@@ -59,7 +59,7 @@
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string;
 {
     static NSDictionary *elementToSelectorDict = nil;
-    
+
     if (!elementToSelectorDict) {
         elementToSelectorDict = [[NSDictionary alloc] initWithObjectsAndKeys:
                                  @"appendToText:", @"text",
@@ -69,7 +69,7 @@
                                  @"setURLWithString:", @"url",
                                  nil];
     }
-    
+
     NSString *key = [[_currentElementName componentsSeparatedByString:@"-"] lastObject];
     SEL selector = NSSelectorFromString([elementToSelectorDict objectForKey:key]);
     if (selector && [_currentPost respondsToSelector:selector]) {
@@ -98,7 +98,7 @@
         NSString *value = [options objectForKey:key];
         [queryStringArray addObject:[NSString stringWithFormat:@"%@=%@", key, value]];
     }
-    
+
     [URLString appendString:[queryStringArray componentsJoinedByString:@"&"]];
     NSURL *URL = [NSURL URLWithString:URLString];
     return URL;
@@ -125,11 +125,11 @@
 
     if (![options objectForKey:TKPostsRequestDomainKey])
         [NSException raise:@"TKPostsRequestDomainKey is mandatory" format:@"TKPostsRequestDomainKey is mandatory"];
-    
-    _receivedPosts = [[NSMutableArray alloc] init];    
+
+    _receivedPosts = [[NSMutableArray alloc] init];
     _options = [options retain];
     _delegate = delegate;
-        
+
     return self;
 }
 

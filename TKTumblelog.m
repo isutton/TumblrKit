@@ -40,7 +40,7 @@
         self.URL = [NSURL URLWithString:[attributeDict objectForKey:@"url"]];
         self.avatarURL = [NSURL URLWithString:[attributeDict objectForKey:@"avatar-url"]];
         self.privateID = [NSNumber numberWithInt:[[attributeDict objectForKey:@"private-id"] intValue]];
-        self.primary = [[attributeDict objectForKey:@"is-primary"] isEqualToString:@"yes"];            
+        self.primary = [[attributeDict objectForKey:@"is-primary"] isEqualToString:@"yes"];
     }
     return self;
 }
