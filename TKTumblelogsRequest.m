@@ -41,31 +41,10 @@
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
-    static NSDictionary *elementToSelectorDict = nil;
-    
-    if (!elementToSelectorDict) {
-        elementToSelectorDict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"setTitle:", @"title",
-                                 @"setName:",@"name",
-                                 @"setURLWithString:", @"url",
-                                 @"setAvatarURLWithString:", @"avatar-url",
-                                 @"setPrimaryWithString:", @"is-primary",
-                                 @"setTypeWithString:", @"type",
-                                 nil];
-    }
-    
     _currentElementName = elementName;
     
-    if ([elementName isEqualToString:@"tumblelog"]) {
-        _currentTumblelog = [[TKTumblelog alloc] init];
-        
-        for (NSString *key in [attributeDict keyEnumerator]) {
-            SEL selector = NSSelectorFromString([elementToSelectorDict objectForKey:key]);
-            if (selector && [_currentTumblelog respondsToSelector:selector]) {
-                [_currentTumblelog performSelector:selector withObject:[attributeDict objectForKey:key]];
-            }
-        }
-    }
+    if ([elementName isEqualToString:@"tumblelog"])
+        _currentTumblelog = [[TKTumblelog alloc] initWithAttributes:attributeDict];
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
