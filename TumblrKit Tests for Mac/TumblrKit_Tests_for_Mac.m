@@ -28,19 +28,19 @@
 - (void)testPostsRequest001;
 {
     NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"tumblrkit-test.tumblr.com", TKPostsRequestDomainKey, nil];
-    TKPostsRequest *request = [[[TKPostsRequest alloc] initWithOptions:options delegate:self] autorelease];
+    TKPostsRequest *request = [[TKPostsRequest alloc] initWithOptions:options delegate:self];
     STAssertEqualObjects([[request URL] absoluteString], @"http://tumblrkit-test.tumblr.com/api/read?", @"");
 
     [options setObject:[NSNumber numberWithInt:10] forKey:TKPostsRequestNumberOfPostsKey];
-    request = [[[TKPostsRequest alloc] initWithOptions:options delegate:self] autorelease];
+    request = [[TKPostsRequest alloc] initWithOptions:options delegate:self];
     STAssertEqualObjects([[request URL] absoluteString], @"http://tumblrkit-test.tumblr.com/api/read?num=10", nil);
     
     [options setObject:[NSNumber numberWithInt:10] forKey:TKPostsRequestStartAtIndexKey];
-    request = [[[TKPostsRequest alloc] initWithOptions:options delegate:self] autorelease];
+    request = [[TKPostsRequest alloc] initWithOptions:options delegate:self];
     STAssertEqualObjects([[request URL] absoluteString], @"http://tumblrkit-test.tumblr.com/api/read?num=10&start=10", nil);
     
     [options setObject:[NSNumber numberWithInt:10] forKey:TKPostsRequestPostIDKey];
-    request = [[[TKPostsRequest alloc] initWithOptions:options delegate:self] autorelease];
+    request = [[TKPostsRequest alloc] initWithOptions:options delegate:self];
     STAssertEqualObjects([[request URL] absoluteString], @"http://tumblrkit-test.tumblr.com/api/read?num=10&id=10&start=10", nil);
 }
 
@@ -50,7 +50,7 @@
                              @"tumblrkit-test.tumblr.com", TKPostsRequestDomainKey, 
                              [NSNumber numberWithInt:10], TKPostsRequestNumberOfPostsKey, 
                              nil];
-    TKPostsRequest *request = [[[TKPostsRequest alloc] initWithOptions:options delegate:self] autorelease];
+    TKPostsRequest *request = [[TKPostsRequest alloc] initWithOptions:options delegate:self];
     [request start];
     
     while (!_testIsDone)
@@ -66,7 +66,7 @@
                              [NSNumber numberWithInt:5], TKPostsRequestStartAtIndexKey,
                              nil];
 
-    TKPostsRequest *request = [[[TKPostsRequest alloc] initWithOptions:options delegate:self] autorelease];
+    TKPostsRequest *request = [[TKPostsRequest alloc] initWithOptions:options delegate:self];
     [request start];
     
     while (!_testIsDone)
@@ -80,7 +80,7 @@
                              [NSNumber numberWithLong:8819125974], TKPostsRequestPostIDKey,
                              nil];
     
-    TKPostsRequest *request = [[[TKPostsRequest alloc] initWithOptions:options delegate:self] autorelease];
+    TKPostsRequest *request = [[TKPostsRequest alloc] initWithOptions:options delegate:self];
     [request start];
     
     while (!_testIsDone)
@@ -94,7 +94,7 @@
                              @"password", TKTumblelogsRequestPasswordKey,
                              nil];
     
-    TKTumblelogsRequest *request = [[[TKTumblelogsRequest alloc] initWithOptions:options delegate:self] autorelease];
+    TKTumblelogsRequest *request = [[TKTumblelogsRequest alloc] initWithOptions:options delegate:self];
     [request start];
     
     while (!_testIsDone)

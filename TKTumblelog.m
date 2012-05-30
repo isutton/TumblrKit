@@ -29,7 +29,7 @@
 
 + (id)tumblelogWithAttributes:(NSDictionary *)attributeDict
 {
-    return [[(TKTumblelog *)[self alloc] initWithAttributes:attributeDict] autorelease];
+    return [(TKTumblelog *)[self alloc] initWithAttributes:attributeDict];
 }
 
 - (id)initWithAttributes:(NSDictionary *)attributeDict

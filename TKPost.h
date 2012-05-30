@@ -207,7 +207,7 @@ typedef enum
 @property (assign) NSUInteger width;
 @property (assign) NSUInteger height;
 @property (copy) NSString *source;
-@property (retain) TKImage *image;
+@property (strong) TKImage *image;
 
 - (NSString *)caption;
 - (void)setCaption:(NSString *)aCaption;

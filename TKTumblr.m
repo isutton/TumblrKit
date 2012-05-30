@@ -42,27 +42,15 @@
     return self;
 }
 
-- (void)dealloc
-{
-    self.email = nil;
-    self.password = nil;
-    self.currentTumblelog = nil;
-    self.currentPost = nil;
-    self.currentElementName = nil;
-    self.requestedPost = nil;
-    [super dealloc];
-}
 
 - (TKPost *)postWithID:(NSNumber *)thePostID andDomain:(NSString *)theDomain
 {
     TKTumblrReadRequest *theReadRequest = [[TKTumblrReadRequest alloc] initWithPostID:thePostID andDomain:theDomain];
     NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:[theReadRequest endpoint]];
-    [theReadRequest release];
     id previousDelegate = [self delegate];
     [self setDelegate:self];
     [parser setDelegate:self];
     [parser parse];
-    [parser release];
     [self setDelegate:previousDelegate];
 
     TKPost *thePost = nil;
@@ -80,7 +68,6 @@
     NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:[theReadRequest endpoint]];
     [parser setDelegate:self];
     [parser parse];
-    [parser release];
 }
 
 - (BOOL)uploadPost:(TKPost *)thePost
@@ -119,7 +106,6 @@
 
     // Release the request before we can enter some potentially dangerous
     // code path.
-    [theURLRequest release];
 
     // Bail out quickly if NSURLConnection populated error.
     if (([theURLResponse statusCode] != TKTumblrCreated)) {
@@ -135,8 +121,7 @@
     // safe to assume that responseData will have only the postID of the post we created.
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSNumber *postID = [formatter numberFromString:[[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]];
-    [formatter release];
+    NSNumber *postID = [formatter numberFromString:[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]];
 
     if (delegate && [delegate respondsToSelector:@selector(tumblrDidUploadPost:withDomain:postID:)]) {
         [delegate tumblrDidUploadPost:thePost withDomain:theDomain postID:postID];
@@ -163,7 +148,6 @@
     NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:theURL];
     [parser setDelegate:self];
     [parser parse];
-    [parser release];
 
     return nil;
 }

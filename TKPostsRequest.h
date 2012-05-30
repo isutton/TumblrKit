@@ -45,8 +45,8 @@
 
 #pragma mark - API
 
-@property (nonatomic, assign) id<TKPostsRequestDelegate> delegate;
-@property (readonly) NSDictionary *options;
+@property (weak, nonatomic) id<TKPostsRequestDelegate> delegate;
+@property (strong, readonly) NSDictionary *options;
 
 - (id)initWithOptions:(NSDictionary *)options delegate:(id<TKPostsRequestDelegate>)delegate;
 
