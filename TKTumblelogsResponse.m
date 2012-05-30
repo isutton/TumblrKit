@@ -28,17 +28,12 @@
 
 #pragma mark - NSObject
 
-- (void)dealloc;
-{
-    [_tumblelogs release]; _tumblelogs = nil;
-    [super dealloc];
-}
 
 #pragma mark - API
 
 + (id)responseWithTumblelogs:(NSArray *)tumblelogs;
 {
-    return [[[self alloc] initWithTumblelogs:tumblelogs] autorelease];
+    return [[self alloc] initWithTumblelogs:tumblelogs];
 }
 
 - (id)initWithTumblelogs:(NSArray *)tumblelogs;
@@ -46,7 +41,7 @@
     if (!(self = [self init]))
         return nil;
     
-    _tumblelogs = [tumblelogs retain];
+    _tumblelogs = tumblelogs;
     
     return self;
 }

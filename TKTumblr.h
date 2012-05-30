@@ -46,7 +46,7 @@ typedef enum
 
 @interface TKTumblr : NSObject <NSXMLParserDelegate,TKTumblrDelegate>
 {
-    id<TKTumblrDelegate,NSObject> delegate;
+    id<TKTumblrDelegate,NSObject> __weak delegate;
 
     NSString *email;
     NSString *password;
@@ -57,12 +57,12 @@ typedef enum
     NSString *currentElementName;
 }
 
-@property (assign) id<TKTumblrDelegate,NSObject> delegate;
+@property (nonatomic,weak) id<TKTumblrDelegate,NSObject> delegate;
 @property (nonatomic,copy) NSString *email;
 @property (nonatomic,copy) NSString *password;
-@property (nonatomic,retain) TKTumblelog *currentTumblelog;
-@property (nonatomic,retain) TKPost *currentPost;
-@property (nonatomic,retain) TKPost *requestedPost;
+@property (nonatomic,strong) TKTumblelog *currentTumblelog;
+@property (nonatomic,strong) TKPost *currentPost;
+@property (nonatomic,strong) TKPost *requestedPost;
 @property (nonatomic,copy) NSString *currentElementName;
 
 - (id)initWithEmail:(NSString *)theEmail andPassword:(NSString *)thePassword;

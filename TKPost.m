@@ -22,28 +22,6 @@
 
 #import "TKPost.h"
 
-/**
- Simplistic dictionary to be used statically. Used to map a Tumblr's post type
- to internal TumblrKit class names.
- */
-typedef struct
-{
-    NSString *name;
-    NSString *className;
-} TKPostTypeToClassNameMapping;
-
-static TKPostTypeToClassNameMapping TKPostTypeStringToClassName[] =
-{
-    { @"photo", @"TKPostPhoto" },
-    { @"conversation", @"TKPostConversation" },
-    { @"link", @"TKPostLink" },
-    { @"quote", @"TKPostQuote" },
-    { @"regular", @"TKPostRegular" },
-    { @"video", @"TKPostVideo" },
-    { @"audio", @"TKPostAudio" },
-    { nil, nil }
-};
-
 static NSString *TKPostTypeFromTumblrAsString[] =
 {
     @"",
@@ -111,15 +89,6 @@ static NSString *TKPostFormatAsString[] =
     return self;
 }
 
-- (void)dealloc
-{
-    [postID release];
-    [url release];
-    [date release];
-    [slug release];
-    [reblogKey release];
-    [super dealloc];
-}
 
 - (NSString *)description
 {
@@ -128,16 +97,25 @@ static NSString *TKPostFormatAsString[] =
 
 + (id)postWithAttributes:(NSDictionary *)attributeDict
 {
+    /**
+     Simplistic dictionary to be used statically. Used to map a Tumblr's post type
+     to internal TumblrKit class names.
+     */
+     NSDictionary *TKPostTypeToClassNameDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     @"TKPostPhoto", @"photo",
+                                     @"TKPostConversation", @"conversation",
+                                     @"TKPostLink", @"link",
+                                     @"TKPostQuote", @"quote",
+                                     @"TKPostRegular", @"regular",
+                                     @"TKPostVideo", @"video",
+                                     @"TKPostAudio", @"audio",
+                                     nil];
+    
     Class postClass = nil;
     NSString *type_ = [attributeDict objectForKey:@"type"];
 
-    for (int i = 0; TKPostTypeStringToClassName[i].name != nil; i++) {
-        if ([TKPostTypeStringToClassName[i].name isEqualToString:type_]) {
-            postClass = NSClassFromString(TKPostTypeStringToClassName[i].className);
-            break;
-        }
-    }
-
+    postClass = NSClassFromString([TKPostTypeToClassNameDict objectForKey:type_]);
+    
     return [(TKPost *)[postClass alloc] initWithAttributes:attributeDict];
 }
 
@@ -170,22 +148,15 @@ static NSString *TKPostFormatAsString[] =
     return self;
 }
 
-- (void)dealloc
-{
-    [title release];
-    [body release];
-    [super dealloc];
-}
 
 - (NSString *)title
 {
-    return [[title copy] autorelease];
+    return [title copy];
 }
 
 - (void)setTitle:(NSString *)aTitle
 {
     if (aTitle != title) {
-        [title release];
         title = [aTitle mutableCopy];
     }
 }
@@ -198,7 +169,6 @@ static NSString *TKPostFormatAsString[] =
 - (void)setBody:(NSString *)aBody
 {
     if (aBody != body) {
-        [body release];
         body = [aBody mutableCopy];
     }
 }
@@ -243,22 +213,15 @@ static NSString *TKPostFormatAsString[] =
     return self;
 }
 
-- (void)dealloc
-{
-    [URL release];
-    [text release];
-    [super dealloc];
-}
 
 - (NSString *)text
 {
-    return [[text copy] autorelease];
+    return [text copy];
 }
 
 - (void)setText:(NSString *)aText
 {
     if (aText != text) {
-        [text release];
         text = [aText mutableCopy];
     }
 }
@@ -270,7 +233,6 @@ static NSString *TKPostFormatAsString[] =
 
 - (void)setURLWithString:(NSString *)URLString
 {
-    [URL release];
     self.URL = [NSURL URLWithString:URLString];
 }
 
@@ -302,35 +264,27 @@ static NSString *TKPostFormatAsString[] =
     return self;
 }
 
-- (void)dealloc
-{
-    [text release];
-    [source release];
-    [super dealloc];
-}
 
 - (NSString *)text
 {
-    return [[text copy] autorelease];
+    return [text copy];
 }
 
 - (void)setText:(NSString *)aText
 {
     if (aText != text) {
-        [text release];
         text = [aText mutableCopy];
     }
 }
 
 - (NSString *)source
 {
-    return [[source copy] autorelease];
+    return [source copy];
 }
 
 - (void)setSource:(NSString *)aSource
 {
     if (aSource != source) {
-        [source release];
         source = [aSource mutableCopy];
     }
 }
@@ -372,21 +326,15 @@ static NSString *TKPostFormatAsString[] =
     return self;
 }
 
-- (void)dealloc
-{
-    [text release];
-    [super dealloc];
-}
 
 - (NSString *)text
 {
-    return [[text copy] autorelease];
+    return [text copy];
 }
 
 - (void)setText:(NSString *)aText
 {
     if (aText != text) {
-        [text release];
         text = [aText mutableCopy];
     }
 }
@@ -439,23 +387,15 @@ static NSString *TKPostFormatAsString[] =
     return self;
 }
 
-- (void)dealloc
-{
-    [source release];
-    [caption release];
-    [image release];
-    [super dealloc];
-}
 
 - (NSString *)caption
 {
-    return [[caption copy] autorelease];
+    return [caption copy];
 }
 
 - (void)setCaption:(NSString *)aCaption
 {
     if (aCaption != caption) {
-        [caption release];
         caption = [aCaption mutableCopy];
     }
 }
@@ -504,49 +444,39 @@ static NSString *TKPostFormatAsString[] =
     return self;
 }
 
-- (void)dealloc
-{
-    [caption release];
-    [source release];
-    [player release];
-    [super dealloc];
-}
 
 - (NSString *)caption
 {
-    return [[caption copy] autorelease];
+    return [caption copy];
 }
 
 - (void)setCaption:(NSString *)aCaption
 {
     if (aCaption != caption) {
-        [caption release];
         caption = [aCaption mutableCopy];
     }
 }
 
 - (NSString *)source
 {
-    return [[source copy] autorelease];
+    return [source copy];
 }
 
 - (void)setSource:(NSString *)aSource
 {
     if (aSource != source) {
-        [source release];
         source = [aSource mutableCopy];
     }
 }
 
 - (NSString *)player
 {
-    return [[player copy] autorelease];
+    return [player copy];
 }
 
 - (void)setPlayer:(NSString *)aPlayer
 {
     if (aPlayer != player) {
-        [player release];
         player = [aPlayer mutableCopy];
     }
 }
@@ -586,35 +516,27 @@ static NSString *TKPostFormatAsString[] =
     return self;
 }
 
-- (void)dealloc
-{
-    [caption release];
-    [player release];
-    [super dealloc];
-}
 
 - (NSString *)caption
 {
-    return [[caption copy] autorelease];
+    return [caption copy];
 }
 
 - (void)setCaption:(NSString *)aCaption
 {
     if (aCaption != caption) {
-        [caption release];
         caption = [aCaption mutableCopy];
     }
 }
 
 - (NSString *)player
 {
-    return [[player copy] autorelease];
+    return [player copy];
 }
 
 - (void)setPlayer:(NSString *)aPlayer
 {
     if (aPlayer != player) {
-        [player release];
         player = [aPlayer mutableCopy];
     }
 }

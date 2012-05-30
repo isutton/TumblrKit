@@ -41,9 +41,9 @@ typedef enum
 
 @property (nonatomic,copy) NSString *title;
 @property (nonatomic,copy) NSString *name;
-@property (nonatomic,retain) NSURL *URL;
-@property (nonatomic,retain) NSURL *avatarURL;
-@property (nonatomic,retain) NSNumber *privateID;
+@property (nonatomic,strong) NSURL *URL;
+@property (nonatomic,strong) NSURL *avatarURL;
+@property (nonatomic,strong) NSNumber *privateID;
 @property (nonatomic,assign) BOOL primary;
 @property (nonatomic,assign) TKTumblelogType type;
 

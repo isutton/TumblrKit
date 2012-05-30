@@ -41,8 +41,7 @@
 - (void)dealloc;
 {
     [self cancel];
-    [_receivedData release]; _receivedData = nil;
-    [super dealloc];
+     _receivedData = nil;
 }
 
 #pragma mark - NSURLConnectionDelegate
@@ -67,7 +66,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 {
     [self connectionDidFinishLoadingData:_receivedData];
-    [_receivedData release]; _receivedData = nil;
+     _receivedData = nil;
 }
 
 #pragma mark - API
@@ -91,7 +90,7 @@
 - (void)cancel;
 {
     [_connection cancel];
-    [_connection release]; _connection = nil;
+     _connection = nil;
 }
 
 @end

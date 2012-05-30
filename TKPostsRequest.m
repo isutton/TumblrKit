@@ -32,10 +32,9 @@
 
 - (void)dealloc;
 {
-    [_receivedPosts release]; _receivedPosts = nil;
-    [_options release]; _options = nil;
-    [_parser release]; _parser = nil;
-    [super dealloc];
+     _receivedPosts = nil;
+     _options = nil;
+     _parser = nil;
 }
 
 #pragma mark - NSXMLParserDelegate
@@ -45,14 +44,13 @@
     _currentElementName = elementName;
     
     if ([elementName isEqualToString:@"post"])
-        _currentPost = [[TKPost postWithAttributes:attributeDict] retain];
+        _currentPost = [TKPost postWithAttributes:attributeDict];
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName;
 {
     if ([elementName isEqualToString:@"post"]) {
         [_receivedPosts addObject:_currentPost];
-        [_currentPost release];
     }
 }
 
@@ -79,7 +77,7 @@
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser;
 {
-    [_currentPost release]; _currentPost = nil;
+     _currentPost = nil;
     [self.delegate postsRequest:self didReceiveResponse:[TKPostsResponse responseWithPosts:_receivedPosts]];
 }
 
@@ -126,7 +124,7 @@
         [NSException raise:@"TKPostsRequestDomainKey is mandatory" format:@"TKPostsRequestDomainKey is mandatory"];
     
     _receivedPosts = [[NSMutableArray alloc] init];    
-    _options = [options retain];
+    _options = options;
     _delegate = delegate;
         
     return self;

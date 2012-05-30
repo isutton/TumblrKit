@@ -32,9 +32,8 @@
 
 - (void)dealloc;
 {
-    [_options release]; _options = nil;
-    [_receivedTumblelogs release]; _receivedTumblelogs = nil;
-    [super dealloc];
+     _options = nil;
+     _receivedTumblelogs = nil;
 }
 
 #pragma mark - NSXMLParserDelegate
@@ -51,13 +50,11 @@
 {
     if ([elementName isEqualToString:@"tumblelog"]) {
         [_receivedTumblelogs addObject:_currentTumblelog];
-        [_currentTumblelog release];
     }
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    [parser release];
     [_delegate tumblelogsRequest:self didReceiveResponse:[TKTumblelogsResponse responseWithTumblelogs:_receivedTumblelogs]];
 }
 
@@ -98,7 +95,7 @@
     if (![options objectForKey:TKTumblelogsRequestPasswordKey])
         [NSException raise:@"TKTumblelogsRequestPasswordKey is mandatory" format:@"TKTumblelogsRequestPasswordKey is mandatory"];    
     
-    _options = [options retain];
+    _options = options;
     _delegate = delegate;
     
     return self;
