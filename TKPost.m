@@ -23,36 +23,36 @@
 #import "TKPost.h"
 
 static NSString *TKPostTypeFromTumblrAsString[] =
-{
-    @"",
-    @"regular",
-    @"link",
-    @"quote",
-    @"photo",
-    @"conversation",
-    @"video",
-    @"audio",
-    @"answer"
-};
+        {
+                @"",
+                @"regular",
+                @"link",
+                @"quote",
+                @"photo",
+                @"conversation",
+                @"video",
+                @"audio",
+                @"answer"
+        };
 
 static NSString *TKPostTypeAsString[] =
-{
-    @"",
-    @"TKPostTypeRegular",
-    @"TKPostTypeLink",
-    @"TKPostTypeQuote",
-    @"TKPostTypePhoto",
-    @"TKPostTypeConversation",
-    @"TKPostTypeVideo",
-    @"TKPostTypeAudio",
-    @"TKPostTypeAnswer"
-};
+        {
+                @"",
+                @"TKPostTypeRegular",
+                @"TKPostTypeLink",
+                @"TKPostTypeQuote",
+                @"TKPostTypePhoto",
+                @"TKPostTypeConversation",
+                @"TKPostTypeVideo",
+                @"TKPostTypeAudio",
+                @"TKPostTypeAnswer"
+        };
 
 static NSString *TKPostFormatAsString[] =
-{
-    @"TKPostFormatHTML",
-    @"TKPostFormatMarkdown"
-};
+        {
+                @"TKPostFormatHTML",
+                @"TKPostFormatMarkdown"
+        };
 
 @implementation TKPost
 
@@ -82,8 +82,8 @@ static NSString *TKPostFormatAsString[] =
         self.slug = [attributeDict objectForKey:@"slug"];
         self.reblogKey = [attributeDict objectForKey:@"reblog-key"];
         self.format = [[attributeDict objectForKey:@"format"] isEqualToString:@"html"]
-            ? TKPostFormatHTML
-            : TKPostFormatMarkdown;
+                ? TKPostFormatHTML
+                : TKPostFormatMarkdown;
     }
 
     return self;
@@ -101,22 +101,22 @@ static NSString *TKPostFormatAsString[] =
      Simplistic dictionary to be used statically. Used to map a Tumblr's post type
      to internal TumblrKit class names.
      */
-     NSDictionary *TKPostTypeToClassNameDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     @"TKPostPhoto", @"photo",
-                                     @"TKPostConversation", @"conversation",
-                                     @"TKPostLink", @"link",
-                                     @"TKPostQuote", @"quote",
-                                     @"TKPostRegular", @"regular",
-                                     @"TKPostVideo", @"video",
-                                     @"TKPostAudio", @"audio",
-                                     nil];
-    
+    NSDictionary *TKPostTypeToClassNameDict = [NSDictionary dictionaryWithObjectsAndKeys:
+            @"TKPostPhoto", @"photo",
+            @"TKPostConversation", @"conversation",
+            @"TKPostLink", @"link",
+            @"TKPostQuote", @"quote",
+            @"TKPostRegular", @"regular",
+            @"TKPostVideo", @"video",
+            @"TKPostAudio", @"audio",
+            nil];
+
     Class postClass = nil;
     NSString *type_ = [attributeDict objectForKey:@"type"];
 
     postClass = NSClassFromString([TKPostTypeToClassNameDict objectForKey:type_]);
-    
-    return [(TKPost *)[postClass alloc] initWithAttributes:attributeDict];
+
+    return [(TKPost *) [postClass alloc] initWithAttributes:attributeDict];
 }
 
 - (NSString *)typeAsString
@@ -127,9 +127,9 @@ static NSString *TKPostFormatAsString[] =
 - (NSDictionary *)attributesAsDictionary
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-    [self typeAsString], @"type",
-        [self group], @"group",
-        nil];
+            [self typeAsString], @"type",
+            [self group], @"group",
+            nil];
     return dict;
 }
 
@@ -190,7 +190,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSDictionary *)attributesAsDictionary
 {
-    NSMutableDictionary *dict = (NSMutableDictionary *)[super attributesAsDictionary];
+    NSMutableDictionary *dict = (NSMutableDictionary *) [super attributesAsDictionary];
     [dict setObject:body forKey:@"body"];
     [dict setObject:title forKey:@"title"];
     return dict;
@@ -243,7 +243,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSDictionary *)attributesAsDictionary
 {
-    NSMutableDictionary *dict = (NSMutableDictionary *)[super attributesAsDictionary];
+    NSMutableDictionary *dict = (NSMutableDictionary *) [super attributesAsDictionary];
     [dict setObject:text forKey:@"name"];
     [dict setObject:[URL absoluteString] forKey:@"url"];
     return dict;
@@ -306,7 +306,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSDictionary *)attributesAsDictionary
 {
-    NSMutableDictionary *dict = (NSMutableDictionary *)[super attributesAsDictionary];
+    NSMutableDictionary *dict = (NSMutableDictionary *) [super attributesAsDictionary];
     [dict setObject:text forKey:@"quote"];
     [dict setObject:source forKey:@"whatever"];
     return dict;
@@ -351,7 +351,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSDictionary *)attributesAsDictionary
 {
-    NSMutableDictionary *dict = (NSMutableDictionary *)[super attributesAsDictionary];
+    NSMutableDictionary *dict = (NSMutableDictionary *) [super attributesAsDictionary];
     [dict setObject:text forKey:@"conversation"];
     [dict setObject:@"" forKey:@"title"];
     return dict;
@@ -412,7 +412,7 @@ static NSString *TKPostFormatAsString[] =
 
 - (NSDictionary *)attributesAsDictionary
 {
-    NSMutableDictionary *dict = (NSMutableDictionary *)[super attributesAsDictionary];
+    NSMutableDictionary *dict = (NSMutableDictionary *) [super attributesAsDictionary];
     if (source != nil)
         [dict setObject:source forKey:@"source"];
     if (image != nil && source == nil) {
