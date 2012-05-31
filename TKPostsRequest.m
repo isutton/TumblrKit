@@ -137,7 +137,7 @@
 
 @end
 
-NSString const * TKPostsRequestDomainKey = @"domain";
-NSString const * TKPostsRequestPostIDKey = @"id";
-NSString const * TKPostsRequestStartAtIndexKey = @"start";
-NSString const * TKPostsRequestNumberOfPostsKey = @"num";
+NSString const *TKPostsRequestDomainKey = @"domain";
+NSString const *TKPostsRequestPostIDKey = @"id";
+NSString const *TKPostsRequestStartAtIndexKey = @"start";
+NSString const *TKPostsRequestNumberOfPostsKey = @"num";

@@ -101,17 +101,20 @@ static NSString *TKPostFormatAsString[] =
      Simplistic dictionary to be used statically. Used to map a Tumblr's post type
      to internal TumblrKit class names.
      */
-    NSDictionary *TKPostTypeToClassNameDict = [NSDictionary dictionaryWithObjectsAndKeys:
-            @"TKPostPhoto", @"photo",
-            @"TKPostConversation", @"conversation",
-            @"TKPostLink", @"link",
-            @"TKPostQuote", @"quote",
-            @"TKPostRegular", @"regular",
-            @"TKPostVideo", @"video",
-            @"TKPostAudio", @"audio",
-            nil];
+    static NSDictionary *TKPostTypeToClassNameDict;
+    if (!TKPostTypeToClassNameDict) {
+        TKPostTypeToClassNameDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                @"TKPostPhoto", @"photo",
+                @"TKPostConversation", @"conversation",
+                @"TKPostLink", @"link",
+                @"TKPostQuote", @"quote",
+                @"TKPostRegular", @"regular",
+                @"TKPostVideo", @"video",
+                @"TKPostAudio", @"audio",
+                nil];
+    }
 
-    Class postClass = nil;
+    Class postClass;
     NSString *type_ = [attributeDict objectForKey:@"type"];
 
     postClass = NSClassFromString([TKPostTypeToClassNameDict objectForKey:type_]);
@@ -380,8 +383,8 @@ static NSString *TKPostFormatAsString[] =
 - (id)initWithAttributes:(NSDictionary *)attributeDict
 {
     if ((self = [super initWithAttributes:attributeDict]) != nil) {
-        width = [[attributeDict objectForKey:@"width"] intValue];
-        height = [[attributeDict objectForKey:@"height"] intValue];
+        width = [[attributeDict objectForKey:@"width"] integerValue];
+        height = [[attributeDict objectForKey:@"height"] integerValue];
     }
 
     return self;

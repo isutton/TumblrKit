@@ -200,12 +200,12 @@ typedef enum
     NSMutableString *caption;
     NSString *source;
     TKImage *image;
-    NSUInteger width;
-    NSUInteger height;
+    NSInteger width;
+    NSInteger height;
 }
 
-@property (assign) NSUInteger width;
-@property (assign) NSUInteger height;
+@property (assign) NSInteger width;
+@property (assign) NSInteger height;
 @property (copy) NSString *source;
 @property (strong) TKImage *image;
 

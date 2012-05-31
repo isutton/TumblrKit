@@ -52,7 +52,7 @@
 
 @end
 
-extern NSString *TKPostsRequestDomainKey;
-extern NSString *TKPostsRequestPostIDKey;
-extern NSString *TKPostsRequestStartAtIndexKey;
-extern NSString *TKPostsRequestNumberOfPostsKey;
+extern NSString const *TKPostsRequestDomainKey;
+extern NSString const *TKPostsRequestPostIDKey;
+extern NSString const *TKPostsRequestStartAtIndexKey;
+extern NSString const *TKPostsRequestNumberOfPostsKey;
