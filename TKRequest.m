@@ -32,16 +32,16 @@
 {
     if (!(self = [super init]))
         return nil;
-    
+
     _receivedData = [[NSMutableData alloc] init];
-    
+
     return self;
 }
 
 - (void)dealloc;
 {
     [self cancel];
-     _receivedData = nil;
+    _receivedData = nil;
 }
 
 #pragma mark - NSURLConnectionDelegate
@@ -55,7 +55,13 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
 {
+    NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *) response;
 
+    if (200 == [HTTPResponse statusCode])
+        return;
+
+    [self cancel];
+    [self connectionDidFailWithError:[NSError errorWithDomain:[NSHTTPURLResponse localizedStringForStatusCode:[HTTPResponse statusCode]] code:[HTTPResponse statusCode] userInfo:nil]];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
@@ -66,7 +72,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 {
     [self connectionDidFinishLoadingData:_receivedData];
-     _receivedData = nil;
+    _receivedData = nil;
 }
 
 #pragma mark - API
@@ -75,22 +81,22 @@
 {
     NSAssert(!_connection, @"start can't be called twice without being cancelled.");
     NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[self URL]];
-    
+
     if ([self respondsToSelector:@selector(HTTPBody)]) {
         theRequest.HTTPMethod = @"POST";
         theRequest.HTTPBody = self.HTTPBody;
-    } 
+    }
     else {
         theRequest.HTTPMethod = @"GET";
     }
-    
+
     _connection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
 }
 
 - (void)cancel;
 {
     [_connection cancel];
-     _connection = nil;
+    _connection = nil;
 }
 
 @end

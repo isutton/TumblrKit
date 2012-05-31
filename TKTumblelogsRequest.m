@@ -82,6 +82,11 @@
     [parser parse];    
 }
 
+- (void)connectionDidFailWithError:(NSError *)error
+{
+    [_delegate tumblelogsRequest:self didFailWithError:error];
+}
+
 #pragma mark - API
 
 - (id)initWithOptions:(NSDictionary *)options delegate:(id<TKTumblelogsRequestDelegate>)delegate;
@@ -103,5 +108,5 @@
 
 @end
 
-NSString const * TKTumblelogsRequestEmailKey = @"email";
-NSString const * TKTumblelogsRequestPasswordKey = @"password";
+NSString const *TKTumblelogsRequestEmailKey = @"email";
+NSString const *TKTumblelogsRequestPasswordKey = @"password";

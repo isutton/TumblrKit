@@ -29,24 +29,25 @@
 @protocol TKTumblelogsRequestDelegate <NSObject>
 
 - (void)tumblelogsRequest:(TKTumblelogsRequest *)request didReceiveResponse:(TKTumblelogsResponse *)response;
+
 - (void)tumblelogsRequest:(TKTumblelogsRequest *)request didFailWithError:(NSError *)error;
 
 @end
 
 @interface TKTumblelogsRequest : TKRequest <NSXMLParserDelegate>
 {
-    @private
+@private
     NSDictionary *_options;
     NSMutableArray *_receivedTumblelogs;
     NSString *_currentElementName;
     TKTumblelog *_currentTumblelog;
 }
 
-@property (weak, nonatomic) id<TKTumblelogsRequestDelegate> delegate;
+@property(weak, nonatomic) id <TKTumblelogsRequestDelegate> delegate;
 
-- (id)initWithOptions:(NSDictionary *)options delegate:(id<TKTumblelogsRequestDelegate>)delegate;
+- (id)initWithOptions:(NSDictionary *)options delegate:(id <TKTumblelogsRequestDelegate>)delegate;
 
 @end
 
-extern NSString *TKTumblelogsRequestEmailKey;
-extern NSString *TKTumblelogsRequestPasswordKey;
+extern NSString const *TKTumblelogsRequestEmailKey;
+extern NSString const *TKTumblelogsRequestPasswordKey;
