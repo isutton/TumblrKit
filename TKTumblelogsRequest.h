@@ -42,7 +42,7 @@
     TKTumblelog *_currentTumblelog;
 }
 
-@property (nonatomic, assign) id<TKTumblelogsRequestDelegate> delegate;
+@property (weak, nonatomic) id<TKTumblelogsRequestDelegate> delegate;
 
 - (id)initWithOptions:(NSDictionary *)options delegate:(id<TKTumblelogsRequestDelegate>)delegate;
 

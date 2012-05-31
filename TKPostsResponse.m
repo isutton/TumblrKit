@@ -28,17 +28,12 @@
 
 #pragma mark - NSObject
 
-- (void)dealloc;
-{
-    [_posts release]; _posts = nil;
-    [super dealloc];
-}
 
 #pragma mark - API
 
 + (id)responseWithPosts:(NSArray *)posts;
 {
-    return [[[self alloc] initWithPosts:posts] autorelease];
+    return [[self alloc] initWithPosts:posts];
 }
 
 - (id)initWithPosts:(NSArray *)posts;
@@ -46,7 +41,7 @@
     if (!(self = [self init]))
         return nil;
     
-    _posts = [posts retain];
+    _posts = posts;
     
     return self;
 }

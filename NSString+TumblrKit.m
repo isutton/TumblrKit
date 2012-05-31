@@ -26,13 +26,13 @@
 
 - (NSString *)stringByAddingQueryPercentEscapesUsingEncoding:(NSStringEncoding)encoding
 {
-    NSString *result = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+    NSString *result = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(
         NULL,
-        (CFStringRef)[[self mutableCopy] autorelease],
+        (__bridge_retained CFStringRef)[self mutableCopy],
         NULL,
         CFSTR("￼=,!$&'()*+;@?\n\"<>#\t :/"),
         kCFStringEncodingUTF8);
-    return [result autorelease];
+    return result;
 }
 
 + (NSString *)MIMEBoundary

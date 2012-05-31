@@ -22,7 +22,7 @@
 
 @interface TKPostsResponse : NSObject
 
-@property (nonatomic, retain) NSArray *posts;
+@property (strong, nonatomic) NSArray *posts;
 
 #pragma mark - API
 

@@ -72,15 +72,6 @@ static NSString *TKPostFilterAsQueryString[] =
     return self;
 }
 
-- (void)dealloc
-{
-    self.start = nil;
-    self.numOfPosts = nil;
-    self.postID = nil;
-    self.search = nil;
-    self.group = nil;
-    [super dealloc];
-}
 
 - (NSURL *)endpoint
 {
@@ -100,7 +91,6 @@ static NSString *TKPostFilterAsQueryString[] =
 
     [endpointString appendFormat:@"filter=%@", TKPostFilterAsQueryString[filter]];
     endpoint = [NSURL URLWithString:endpointString];
-    [endpointString release];
     return endpoint;
 }
 

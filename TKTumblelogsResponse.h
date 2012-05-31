@@ -22,7 +22,7 @@
 
 @interface TKTumblelogsResponse : NSObject
 
-@property (nonatomic, retain) NSArray *tumblelogs;
+@property (nonatomic,strong) NSArray *tumblelogs;
 
 #pragma mark - API
 
