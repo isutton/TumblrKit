@@ -89,7 +89,7 @@
 
     [theURLRequest setHTTPMethod:@"POST"];
     [theURLRequest setValue:@"8bit" forHTTPHeaderField:@"Content-Transfer-Encoding"];
-    [theURLRequest setValue:[NSString stringWithFormat:@"%ld", [postBody length]] forHTTPHeaderField:@"Content-Length"];
+    [theURLRequest setValue:[NSString stringWithFormat:@"%d", [postBody length]] forHTTPHeaderField:@"Content-Length"];
     [theURLRequest setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", [NSString MIMEBoundary]] forHTTPHeaderField:@"Content-Type"];
     [theURLRequest setHTTPBody:postBody];
 
