@@ -186,6 +186,9 @@
     }
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     static NSDictionary *elementToSelectorDict = nil;
@@ -206,6 +209,8 @@
         [currentPost performSelector:selector withObject:string];
     }
 }
+
+#pragma clang diagnostic pop
 
 #pragma mark TKTumblrDelegate
 
